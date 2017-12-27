@@ -51,7 +51,7 @@ class ViewController: UIViewController {
     
     let signupButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
+        button.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
         button.layer.cornerRadius = 5
         button.setTitle("Sign Up", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
@@ -66,9 +66,7 @@ class ViewController: UIViewController {
         view.addSubview(addPhotoButton)
         view.addSubview(emailTextField)
         
-        addPhotoButton.widthAnchor.constraint(equalToConstant: 140).isActive = true
-        addPhotoButton.heightAnchor.constraint(equalToConstant: 140).isActive = true
-        addPhotoButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 40).isActive = true
+        addPhotoButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, topPadding: 40, leftPadding: 0, bottomPadding: 0, rightPadding: 0, width: 140, height: 140)
         addPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         setUpInputFields()
@@ -76,17 +74,14 @@ class ViewController: UIViewController {
     
     fileprivate func setUpInputFields(){
         let stackView = UIStackView(arrangedSubviews: [emailTextField, usernameTextField, passwordTextField, signupButton])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.spacing = 10
         
         view.addSubview(stackView)
         
-        NSLayoutConstraint.activate([stackView.topAnchor.constraint(equalTo: addPhotoButton.bottomAnchor, constant: 20),
-            stackView.heightAnchor.constraint(equalToConstant: 200),
-            stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 40),
-            stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -40)])
+        stackView.anchor(top: addPhotoButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topPadding: 20, leftPadding: 40, bottomPadding: 0, rightPadding: 40, width: 0, height: 200)
     }
 }
 
