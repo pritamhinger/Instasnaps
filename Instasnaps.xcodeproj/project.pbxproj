@@ -14,9 +14,12 @@
 		48BEADA81FF2C1FA00BF689F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48BEADA61FF2C1FA00BF689F /* LaunchScreen.storyboard */; };
 		48BEADB21FF41C6500BF689F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BEADB11FF41C6500BF689F /* UIColor+Extension.swift */; };
 		48BEADB41FF41D1200BF689F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BEADB31FF41D1200BF689F /* UIView+Extension.swift */; };
+		48BEADB61FF56A6500BF689F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48BEADB51FF56A6500BF689F /* GoogleService-Info.plist */; };
+		E67BC55B550811F8C78DA5F0 /* Pods_Instasnaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C5499D5368156772A13A532 /* Pods_Instasnaps.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C81A00BC4ECD9F8F37EEBCC /* Pods-Instasnaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instasnaps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instasnaps/Pods-Instasnaps.debug.xcconfig"; sourceTree = "<group>"; };
 		48BEAD9A1FF2C1FA00BF689F /* Instasnaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instasnaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48BEAD9D1FF2C1FA00BF689F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48BEAD9F1FF2C1FA00BF689F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,6 +29,9 @@
 		48BEADA91FF2C1FA00BF689F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48BEADB11FF41C6500BF689F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		48BEADB31FF41D1200BF689F /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		48BEADB51FF56A6500BF689F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6C5499D5368156772A13A532 /* Pods_Instasnaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instasnaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5C2D0FEBFE2B8BB3735FC5A /* Pods-Instasnaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instasnaps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instasnaps/Pods-Instasnaps.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +39,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E67BC55B550811F8C78DA5F0 /* Pods_Instasnaps.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3199756C88F9E6A9D88AC3F4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0C81A00BC4ECD9F8F37EEBCC /* Pods-Instasnaps.debug.xcconfig */,
+				C5C2D0FEBFE2B8BB3735FC5A /* Pods-Instasnaps.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		48BEAD911FF2C1FA00BF689F = {
 			isa = PBXGroup;
 			children = (
 				48BEAD9C1FF2C1FA00BF689F /* Instasnaps */,
 				48BEAD9B1FF2C1FA00BF689F /* Products */,
+				3199756C88F9E6A9D88AC3F4 /* Pods */,
+				700ADC1A90B2D6826FB0A450 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,6 +81,7 @@
 				48BEAD9F1FF2C1FA00BF689F /* ViewController.swift */,
 				48BEADA11FF2C1FA00BF689F /* Main.storyboard */,
 				48BEADA41FF2C1FA00BF689F /* Assets.xcassets */,
+				48BEADB51FF56A6500BF689F /* GoogleService-Info.plist */,
 				48BEADA61FF2C1FA00BF689F /* LaunchScreen.storyboard */,
 				48BEADA91FF2C1FA00BF689F /* Info.plist */,
 			);
@@ -86,6 +105,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		700ADC1A90B2D6826FB0A450 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C5499D5368156772A13A532 /* Pods_Instasnaps.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -93,9 +120,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48BEADAC1FF2C1FA00BF689F /* Build configuration list for PBXNativeTarget "Instasnaps" */;
 			buildPhases = (
+				C7A451526948C5E113DF458A /* [CP] Check Pods Manifest.lock */,
 				48BEAD961FF2C1FA00BF689F /* Sources */,
 				48BEAD971FF2C1FA00BF689F /* Frameworks */,
 				48BEAD981FF2C1FA00BF689F /* Resources */,
+				7C5288E5D3B9B8E141F0FAA4 /* [CP] Embed Pods Frameworks */,
+				A723D54CD52B32E8B50FF857 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -145,6 +175,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48BEADB61FF56A6500BF689F /* GoogleService-Info.plist in Resources */,
 				48BEADA81FF2C1FA00BF689F /* LaunchScreen.storyboard in Resources */,
 				48BEADA51FF2C1FA00BF689F /* Assets.xcassets in Resources */,
 				48BEADA31FF2C1FA00BF689F /* Main.storyboard in Resources */,
@@ -152,6 +183,66 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7C5288E5D3B9B8E141F0FAA4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Instasnaps/Pods-Instasnaps-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Instasnaps/Pods-Instasnaps-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A723D54CD52B32E8B50FF857 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Instasnaps/Pods-Instasnaps-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7A451526948C5E113DF458A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Instasnaps-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		48BEAD961FF2C1FA00BF689F /* Sources */ = {
@@ -296,6 +387,7 @@
 		};
 		48BEADAD1FF2C1FA00BF689F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C81A00BC4ECD9F8F37EEBCC /* Pods-Instasnaps.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -311,6 +403,7 @@
 		};
 		48BEADAE1FF2C1FA00BF689F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5C2D0FEBFE2B8BB3735FC5A /* Pods-Instasnaps.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
