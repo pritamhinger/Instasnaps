@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class ViewController: UIViewController {
 
@@ -25,6 +27,7 @@ class ViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.backgroundColor = UIColor(white: 0, alpha: 0.03)
         textField.font = UIFont.systemFont(ofSize: 14)
+        textField.addTarget(self, action: #selector(handleTextFieldTextChanged), for: .editingChanged)
         return textField
     }()
     
@@ -35,6 +38,7 @@ class ViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.backgroundColor = UIColor(white: 0, alpha: 0.03)
         textField.font = UIFont.systemFont(ofSize: 14)
+        textField.addTarget(self, action: #selector(handleTextFieldTextChanged), for: .editingChanged)
         return textField
     }()
     
@@ -46,6 +50,7 @@ class ViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.backgroundColor = UIColor(white: 0, alpha: 0.03)
         textField.font = UIFont.systemFont(ofSize: 14)
+        textField.addTarget(self, action: #selector(handleTextFieldTextChanged), for: .editingChanged)
         return textField
     }()
     
@@ -57,6 +62,8 @@ class ViewController: UIViewController {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.white, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        button.isEnabled = false
         return button
     }()
     
@@ -82,6 +89,35 @@ class ViewController: UIViewController {
         view.addSubview(stackView)
         
         stackView.anchor(top: addPhotoButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topPadding: 20, leftPadding: 40, bottomPadding: 0, rightPadding: 40, width: 0, height: 200)
+    }
+    
+    @objc private func handleSignUp(){
+        guard let email = emailTextField.text, email.count > 0 else { return }
+        guard let password = passwordTextField.text, password.count > 0 else { return }
+        guard let username = usernameTextField.text, username.count > 0 else { return }
+        
+        Auth.auth().createUser(withEmail: email, password: password, completion: {(user: User?, error: Error?) in
+            if let err = error{
+                print(err)
+                return
+            }
+            
+            print("Successfully created user. User Id is : \(user?.uid ?? "")")
+        })
+    }
+    
+    @objc private func handleTextFieldTextChanged(){
+        let isFormValid = emailTextField.text?.count ?? 0 > 0 &&
+        usernameTextField.text?.count ?? 0 > 0 &&
+        passwordTextField.text?.count ?? 0 > 0
+        
+        if isFormValid{
+            signupButton.isEnabled = true
+            signupButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 237)
+        }else{
+            signupButton.isEnabled = false
+            signupButton.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
+        }
     }
 }
 
