@@ -14,9 +14,10 @@ class ViewController: UIViewController {
 
     let addPhotoButton: UIButton = {
         let button = UIButton(type: .system)
-        //button.backgroundColor = .red
         button.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.addTarget(self, action: #selector(selectProfileImage), for: .touchUpInside)
         return button
     }()
     
@@ -102,7 +103,39 @@ class ViewController: UIViewController {
                 return
             }
             
-            print("Successfully created user. User Id is : \(user?.uid ?? "")")
+            print("Successfully created user for authentication. User Id is : \(user?.uid ?? "")")
+
+            guard let image = self.addPhotoButton.imageView?.image else {return}
+            
+            guard let imageData = UIImageJPEGRepresentation(image, 0.3) else {return}
+            
+            let fileName = NSUUID().uuidString
+            Storage.storage().reference().child("profileImages").child(fileName).putData(imageData, metadata: nil, completion: {(metadata, error) in
+                if let error = error{
+                    print("Failed to upload profile image", error)
+                    return
+                }
+                
+                print("Successfully uploaded the profile image")
+                guard let imageUrl = metadata?.downloadURL()?.absoluteString else {return}
+                print("Image URL is : \(imageUrl)")
+                
+                guard let uid = user?.uid else {return}
+                
+                let userProfileAttributes = ["username": username, "profileImageURL": imageUrl]
+                let userValues = [uid: userProfileAttributes]
+                
+                Database.database().reference().child("users").updateChildValues(userValues, withCompletionBlock: {(error, reference) in
+                    if let error = error {
+                        print("Error occured while saving user profile", error)
+                        return
+                    }
+                    
+                    print("USer Profile saved in Firebase Database")
+                })
+            })
+            
+            
         })
     }
     
@@ -119,5 +152,32 @@ class ViewController: UIViewController {
             signupButton.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
         }
     }
+    
+    @objc func selectProfileImage(){
+        let imageViewController = UIImagePickerController()
+        imageViewController.delegate = self
+        imageViewController.allowsEditing = true
+        present(imageViewController, animated: true, completion: nil)
+    }
 }
 
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            addPhotoButton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        }else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage{
+            addPhotoButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        
+        addPhotoButton.layer.cornerRadius = addPhotoButton.frame.width/2
+        addPhotoButton.layer.masksToBounds = true
+        addPhotoButton.layer.borderColor = UIColor.black.cgColor
+        addPhotoButton.layer.borderWidth = 3
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("Action canceled by user")
+    }
+}
