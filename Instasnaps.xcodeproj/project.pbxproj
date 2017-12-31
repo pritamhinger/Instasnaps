@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		48BEAD9E1FF2C1FA00BF689F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BEAD9D1FF2C1FA00BF689F /* AppDelegate.swift */; };
-		48BEADA01FF2C1FA00BF689F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BEAD9F1FF2C1FA00BF689F /* ViewController.swift */; };
+		48BEADA01FF2C1FA00BF689F /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BEAD9F1FF2C1FA00BF689F /* SignUpController.swift */; };
 		48BEADA31FF2C1FA00BF689F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48BEADA11FF2C1FA00BF689F /* Main.storyboard */; };
 		48BEADA51FF2C1FA00BF689F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48BEADA41FF2C1FA00BF689F /* Assets.xcassets */; };
 		48BEADA81FF2C1FA00BF689F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48BEADA61FF2C1FA00BF689F /* LaunchScreen.storyboard */; };
@@ -19,6 +19,7 @@
 		48E6022F1FF8B6CD00E6C1A4 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E6022E1FF8B6CD00E6C1A4 /* UserProfileController.swift */; };
 		48E602321FF8C2ED00E6C1A4 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E602311FF8C2ED00E6C1A4 /* UserProfileHeader.swift */; };
 		48E602351FF8C50B00E6C1A4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E602341FF8C50B00E6C1A4 /* User.swift */; };
+		48E6023A1FF90EF800E6C1A4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E602391FF90EF800E6C1A4 /* LoginController.swift */; };
 		E67BC55B550811F8C78DA5F0 /* Pods_Instasnaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C5499D5368156772A13A532 /* Pods_Instasnaps.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +27,7 @@
 		0C81A00BC4ECD9F8F37EEBCC /* Pods-Instasnaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instasnaps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instasnaps/Pods-Instasnaps.debug.xcconfig"; sourceTree = "<group>"; };
 		48BEAD9A1FF2C1FA00BF689F /* Instasnaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instasnaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48BEAD9D1FF2C1FA00BF689F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		48BEAD9F1FF2C1FA00BF689F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		48BEAD9F1FF2C1FA00BF689F /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		48BEADA21FF2C1FA00BF689F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48BEADA41FF2C1FA00BF689F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48BEADA71FF2C1FA00BF689F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -38,6 +39,7 @@
 		48E6022E1FF8B6CD00E6C1A4 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		48E602311FF8C2ED00E6C1A4 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		48E602341FF8C50B00E6C1A4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		48E602391FF90EF800E6C1A4 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		6C5499D5368156772A13A532 /* Pods_Instasnaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instasnaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5C2D0FEBFE2B8BB3735FC5A /* Pods-Instasnaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instasnaps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instasnaps/Pods-Instasnaps.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,11 +86,11 @@
 		48BEAD9C1FF2C1FA00BF689F /* Instasnaps */ = {
 			isa = PBXGroup;
 			children = (
+				48E602361FF90ED400E6C1A4 /* Login */,
 				48E6022C1FF8B6B600E6C1A4 /* UserProfile */,
 				48E602281FF8B5FC00E6C1A4 /* MainTabBar */,
 				48BEADAF1FF41C3A00BF689F /* Helpers */,
 				48BEAD9D1FF2C1FA00BF689F /* AppDelegate.swift */,
-				48BEAD9F1FF2C1FA00BF689F /* ViewController.swift */,
 				48BEADA11FF2C1FA00BF689F /* Main.storyboard */,
 				48BEADA41FF2C1FA00BF689F /* Assets.xcassets */,
 				48BEADB51FF56A6500BF689F /* GoogleService-Info.plist */,
@@ -163,6 +165,31 @@
 				48E602341FF8C50B00E6C1A4 /* User.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		48E602361FF90ED400E6C1A4 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				48E602381FF90EEB00E6C1A4 /* View */,
+				48E602371FF90EE300E6C1A4 /* Controller */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		48E602371FF90EE300E6C1A4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				48BEAD9F1FF2C1FA00BF689F /* SignUpController.swift */,
+				48E602391FF90EF800E6C1A4 /* LoginController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		48E602381FF90EEB00E6C1A4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		700ADC1A90B2D6826FB0A450 /* Frameworks */ = {
@@ -311,8 +338,9 @@
 			files = (
 				48BEADB21FF41C6500BF689F /* UIColor+Extension.swift in Sources */,
 				48E602321FF8C2ED00E6C1A4 /* UserProfileHeader.swift in Sources */,
-				48BEADA01FF2C1FA00BF689F /* ViewController.swift in Sources */,
+				48BEADA01FF2C1FA00BF689F /* SignUpController.swift in Sources */,
 				48E6022F1FF8B6CD00E6C1A4 /* UserProfileController.swift in Sources */,
+				48E6023A1FF90EF800E6C1A4 /* LoginController.swift in Sources */,
 				48E602351FF8C50B00E6C1A4 /* User.swift in Sources */,
 				48E6022B1FF8B63100E6C1A4 /* MainTabBarController.swift in Sources */,
 				48BEADB41FF41D1200BF689F /* UIView+Extension.swift in Sources */,

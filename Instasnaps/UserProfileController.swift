@@ -23,6 +23,8 @@ class UserProfileController: UICollectionViewController {
         
         collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReusableIdentifier)
         collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellReusableIdentifier)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogout))
     }
     
     fileprivate func fetchUser() {
@@ -56,7 +58,20 @@ class UserProfileController: UICollectionViewController {
         return CGSize(width: width, height: width)
     }
     
-    
+    @objc func handleLogout() {
+        let logoutActionController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        logoutActionController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (_) in
+            do{
+                try Auth.auth().signOut()
+                // Need to show LoginController on successful Signout.
+            } catch let signOutError{
+                print("Error occured while signing out", signOutError)
+            }
+        }))
+        
+        logoutActionController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(logoutActionController, animated: true, completion: nil)
+    }
 }
 
 extension UserProfileController: UICollectionViewDelegateFlowLayout{
