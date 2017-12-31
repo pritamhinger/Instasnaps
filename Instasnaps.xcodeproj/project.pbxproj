@@ -17,6 +17,8 @@
 		48BEADB61FF56A6500BF689F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48BEADB51FF56A6500BF689F /* GoogleService-Info.plist */; };
 		48E6022B1FF8B63100E6C1A4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E6022A1FF8B63100E6C1A4 /* MainTabBarController.swift */; };
 		48E6022F1FF8B6CD00E6C1A4 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E6022E1FF8B6CD00E6C1A4 /* UserProfileController.swift */; };
+		48E602321FF8C2ED00E6C1A4 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E602311FF8C2ED00E6C1A4 /* UserProfileHeader.swift */; };
+		48E602351FF8C50B00E6C1A4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E602341FF8C50B00E6C1A4 /* User.swift */; };
 		E67BC55B550811F8C78DA5F0 /* Pods_Instasnaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C5499D5368156772A13A532 /* Pods_Instasnaps.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +36,8 @@
 		48BEADB51FF56A6500BF689F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		48E6022A1FF8B63100E6C1A4 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		48E6022E1FF8B6CD00E6C1A4 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
+		48E602311FF8C2ED00E6C1A4 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
+		48E602341FF8C50B00E6C1A4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6C5499D5368156772A13A532 /* Pods_Instasnaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instasnaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5C2D0FEBFE2B8BB3735FC5A /* Pods-Instasnaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instasnaps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instasnaps/Pods-Instasnaps.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +134,8 @@
 		48E6022C1FF8B6B600E6C1A4 /* UserProfile */ = {
 			isa = PBXGroup;
 			children = (
+				48E602331FF8C50200E6C1A4 /* Model */,
+				48E602301FF8C2DC00E6C1A4 /* View */,
 				48E6022D1FF8B6C000E6C1A4 /* Controller */,
 			);
 			name = UserProfile;
@@ -141,6 +147,22 @@
 				48E6022E1FF8B6CD00E6C1A4 /* UserProfileController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		48E602301FF8C2DC00E6C1A4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				48E602311FF8C2ED00E6C1A4 /* UserProfileHeader.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		48E602331FF8C50200E6C1A4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				48E602341FF8C50B00E6C1A4 /* User.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		700ADC1A90B2D6826FB0A450 /* Frameworks */ = {
@@ -288,8 +310,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				48BEADB21FF41C6500BF689F /* UIColor+Extension.swift in Sources */,
+				48E602321FF8C2ED00E6C1A4 /* UserProfileHeader.swift in Sources */,
 				48BEADA01FF2C1FA00BF689F /* ViewController.swift in Sources */,
 				48E6022F1FF8B6CD00E6C1A4 /* UserProfileController.swift in Sources */,
+				48E602351FF8C50B00E6C1A4 /* User.swift in Sources */,
 				48E6022B1FF8B63100E6C1A4 /* MainTabBarController.swift in Sources */,
 				48BEADB41FF41D1200BF689F /* UIView+Extension.swift in Sources */,
 				48BEAD9E1FF2C1FA00BF689F /* AppDelegate.swift in Sources */,

@@ -97,7 +97,7 @@ class ViewController: UIViewController {
         guard let password = passwordTextField.text, password.count > 0 else { return }
         guard let username = usernameTextField.text, username.count > 0 else { return }
         
-        Auth.auth().createUser(withEmail: email, password: password, completion: {(user: User?, error: Error?) in
+        Auth.auth().createUser(withEmail: email, password: password, completion: {(user: User?, error: Error?) -> Void in
             if let err = error{
                 print(err)
                 return

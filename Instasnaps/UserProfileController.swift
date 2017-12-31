@@ -11,12 +11,16 @@ import Firebase
 import FirebaseAuth
 
 class UserProfileController: UICollectionViewController {
+    
+    let headerReusableIdentifier = "headerId"
+    var user: UserProfile?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         collectionView?.backgroundColor = .white
-        
         fetchUser()
+        
+        collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReusableIdentifier)
     }
     
     fileprivate func fetchUser() {
@@ -26,11 +30,25 @@ class UserProfileController: UICollectionViewController {
             print(snapshot.value ?? "Value is nil or empty")
             guard let userProfileDictionary = snapshot.value as? [String: Any] else {return}
             
-            let username = userProfileDictionary["username"] as? String
-            self.navigationItem.title = username
+            self.user = UserProfile(dictionary: userProfileDictionary)
+            self.navigationItem.title = self.user?.username
+            self.collectionView?.reloadData()
             
         }, withCancel: {(error) in
             print("Error occred while reading user profile")
         })
+    }
+}
+
+extension UserProfileController: UICollectionViewDelegateFlowLayout{
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReusableIdentifier, for: indexPath) as! UserProfileHeader
+        headerCell.backgroundColor = .blue
+        headerCell.user = user
+        return headerCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 200)
     }
 }
