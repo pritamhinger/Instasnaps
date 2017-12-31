@@ -68,15 +68,25 @@ class SignUpController: UIViewController {
         return button
     }()
     
+    let alreadyHaveAnAccountButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributedTitle = NSMutableAttributedString(string: "Already have an account?  ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.lightGray])
+        attributedTitle.append(NSAttributedString(string: "Sign In", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 237)]))
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.addTarget(self, action: #selector(showLoginController), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(addPhotoButton)
         view.addSubview(emailTextField)
+        view.addSubview(alreadyHaveAnAccountButton)
         
         addPhotoButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, topPadding: 40, leftPadding: 0, bottomPadding: 0, rightPadding: 0, width: 140, height: 140)
         addPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
+        alreadyHaveAnAccountButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 0, width: 0, height: 50)
         setUpInputFields()
     }
     
@@ -158,6 +168,9 @@ class SignUpController: UIViewController {
         imageViewController.delegate = self
         imageViewController.allowsEditing = true
         present(imageViewController, animated: true, completion: nil)
+    }
+    @objc func showLoginController(){
+        _ = navigationController?.popViewController(animated: true)
     }
 }
 
