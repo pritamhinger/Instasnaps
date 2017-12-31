@@ -15,6 +15,8 @@
 		48BEADB21FF41C6500BF689F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BEADB11FF41C6500BF689F /* UIColor+Extension.swift */; };
 		48BEADB41FF41D1200BF689F /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BEADB31FF41D1200BF689F /* UIView+Extension.swift */; };
 		48BEADB61FF56A6500BF689F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48BEADB51FF56A6500BF689F /* GoogleService-Info.plist */; };
+		48E6022B1FF8B63100E6C1A4 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E6022A1FF8B63100E6C1A4 /* MainTabBarController.swift */; };
+		48E6022F1FF8B6CD00E6C1A4 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E6022E1FF8B6CD00E6C1A4 /* UserProfileController.swift */; };
 		E67BC55B550811F8C78DA5F0 /* Pods_Instasnaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C5499D5368156772A13A532 /* Pods_Instasnaps.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +32,8 @@
 		48BEADB11FF41C6500BF689F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		48BEADB31FF41D1200BF689F /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		48BEADB51FF56A6500BF689F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		48E6022A1FF8B63100E6C1A4 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		48E6022E1FF8B6CD00E6C1A4 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		6C5499D5368156772A13A532 /* Pods_Instasnaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instasnaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5C2D0FEBFE2B8BB3735FC5A /* Pods-Instasnaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instasnaps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instasnaps/Pods-Instasnaps.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +80,8 @@
 		48BEAD9C1FF2C1FA00BF689F /* Instasnaps */ = {
 			isa = PBXGroup;
 			children = (
+				48E6022C1FF8B6B600E6C1A4 /* UserProfile */,
+				48E602281FF8B5FC00E6C1A4 /* MainTabBar */,
 				48BEADAF1FF41C3A00BF689F /* Helpers */,
 				48BEAD9D1FF2C1FA00BF689F /* AppDelegate.swift */,
 				48BEAD9F1FF2C1FA00BF689F /* ViewController.swift */,
@@ -103,6 +109,38 @@
 				48BEADB31FF41D1200BF689F /* UIView+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		48E602281FF8B5FC00E6C1A4 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				48E602291FF8B61800E6C1A4 /* Controller */,
+			);
+			name = MainTabBar;
+			sourceTree = "<group>";
+		};
+		48E602291FF8B61800E6C1A4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				48E6022A1FF8B63100E6C1A4 /* MainTabBarController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		48E6022C1FF8B6B600E6C1A4 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				48E6022D1FF8B6C000E6C1A4 /* Controller */,
+			);
+			name = UserProfile;
+			sourceTree = "<group>";
+		};
+		48E6022D1FF8B6C000E6C1A4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				48E6022E1FF8B6CD00E6C1A4 /* UserProfileController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		700ADC1A90B2D6826FB0A450 /* Frameworks */ = {
@@ -251,6 +289,8 @@
 			files = (
 				48BEADB21FF41C6500BF689F /* UIColor+Extension.swift in Sources */,
 				48BEADA01FF2C1FA00BF689F /* ViewController.swift in Sources */,
+				48E6022F1FF8B6CD00E6C1A4 /* UserProfileController.swift in Sources */,
+				48E6022B1FF8B63100E6C1A4 /* MainTabBarController.swift in Sources */,
 				48BEADB41FF41D1200BF689F /* UIView+Extension.swift in Sources */,
 				48BEAD9E1FF2C1FA00BF689F /* AppDelegate.swift in Sources */,
 			);
