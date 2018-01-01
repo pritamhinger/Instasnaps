@@ -18,6 +18,8 @@ class LoginController: UIViewController {
         let label = UILabel()
         label.text = "InstaSnaps"
         label.font = UIFont(name: "Zapfino", size: 36)
+        //label.font = UIFont(name: "Chalkduster", size: 36)
+        //label.font = UIFont(name: "Noteworthy-Bold", size: 36)
         label.textColor = .white
         view.addSubview(label)
         label.anchor(top: nil, left: nil, bottom: nil, right: nil, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 0, width: view.frame.width, height: 70)
