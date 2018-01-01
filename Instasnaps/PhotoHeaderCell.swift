@@ -1,5 +1,5 @@
 //
-//  PhotoCell.swift
+//  PhotoHeaderCell.swift
 //  Instasnaps
 //
 //  Created by Pritam Hinger on 01/01/18.
@@ -8,8 +8,7 @@
 
 import UIKit
 
-class PhotoCell: UICollectionViewCell {
-    
+class PhotoHeaderCell: UICollectionViewCell {
     let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill

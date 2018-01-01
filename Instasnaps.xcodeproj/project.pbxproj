@@ -22,6 +22,7 @@
 		48E6023A1FF90EF800E6C1A4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E602391FF90EF800E6C1A4 /* LoginController.swift */; };
 		48E602401FFA79F300E6C1A4 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E6023F1FFA79F300E6C1A4 /* PhotoSelectorController.swift */; };
 		48E602421FFA93D300E6C1A4 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E602411FFA93D300E6C1A4 /* PhotoCell.swift */; };
+		48E602441FFAB1B400E6C1A4 /* PhotoHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E602431FFAB1B400E6C1A4 /* PhotoHeaderCell.swift */; };
 		E67BC55B550811F8C78DA5F0 /* Pods_Instasnaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C5499D5368156772A13A532 /* Pods_Instasnaps.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		48E602391FF90EF800E6C1A4 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		48E6023F1FFA79F300E6C1A4 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		48E602411FFA93D300E6C1A4 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		48E602431FFAB1B400E6C1A4 /* PhotoHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoHeaderCell.swift; sourceTree = "<group>"; };
 		6C5499D5368156772A13A532 /* Pods_Instasnaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instasnaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5C2D0FEBFE2B8BB3735FC5A /* Pods-Instasnaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instasnaps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instasnaps/Pods-Instasnaps.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				48E602411FFA93D300E6C1A4 /* PhotoCell.swift */,
+				48E602431FFAB1B400E6C1A4 /* PhotoHeaderCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				48BEADB21FF41C6500BF689F /* UIColor+Extension.swift in Sources */,
 				48E602321FF8C2ED00E6C1A4 /* UserProfileHeader.swift in Sources */,
 				48BEADA01FF2C1FA00BF689F /* SignUpController.swift in Sources */,
+				48E602441FFAB1B400E6C1A4 /* PhotoHeaderCell.swift in Sources */,
 				48E6022F1FF8B6CD00E6C1A4 /* UserProfileController.swift in Sources */,
 				48E6023A1FF90EF800E6C1A4 /* LoginController.swift in Sources */,
 				48E602351FF8C50B00E6C1A4 /* User.swift in Sources */,
