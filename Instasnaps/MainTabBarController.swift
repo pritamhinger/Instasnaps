@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 class MainTabBarController: UITabBarController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,12 +22,17 @@ class MainTabBarController: UITabBarController {
             }
         }
         
+        setupTabBarControllers()
+    }
+    
+    func setupTabBarControllers() {
         let layout = UICollectionViewFlowLayout()
         let userProfileController = UserProfileController(collectionViewLayout: layout)
         let navController = UINavigationController(rootViewController: userProfileController)
         
         navController.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
         navController.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")
+        navController.tabBarItem.title = "Profile"
         viewControllers = [navController, UIViewController()]
         
         tabBar.tintColor = .black

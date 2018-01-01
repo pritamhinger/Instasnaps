@@ -63,7 +63,9 @@ class UserProfileController: UICollectionViewController {
         logoutActionController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (_) in
             do{
                 try Auth.auth().signOut()
-                // Need to show LoginController on successful Signout.
+                let loginController = LoginController()
+                let loginNavigationController = UINavigationController(rootViewController: loginController)
+                self.present(loginNavigationController, animated: true, completion: nil)
             } catch let signOutError{
                 print("Error occured while signing out", signOutError)
             }
