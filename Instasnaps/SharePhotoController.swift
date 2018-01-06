@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SharePhotoController: UIViewController {
     
@@ -60,6 +61,42 @@ class SharePhotoController: UIViewController {
     }
     
     @objc func handleShare(){
-        print("Sharing Data")
+        guard let caption = shareTextView.text, caption.count > 0 else { return }
+        guard let image = selectedImage else { return }
+        guard let imageData = UIImageJPEGRepresentation(image, 0.5) else { return }
+        
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        
+        let fileName = NSUUID().uuidString
+        Storage.storage().reference().child("posts").child(fileName).putData(imageData, metadata: nil) { (metadata, err) in
+            if let err = err {
+                print("Error occured while uploading image", err)
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                return
+            }
+            
+            guard let imageUrl = metadata?.downloadURL()?.absoluteString else { return }
+            self.savePostWithURL(imageUrl: imageUrl)
+        }
+    }
+    
+    fileprivate func savePostWithURL(imageUrl: String){
+        guard let caption = shareTextView.text else { return}
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let image = selectedImage else { return }
+        
+        let postDictionary = ["postImageUrl": imageUrl, "caption": caption, "imageWidth": image.size.width, "imageHeight": image.size.height, "createdOn": Date().timeIntervalSince1970] as [String : Any]
+        let userPostsRef = Database.database().reference().child("posts").child(uid)
+        let postRef = userPostsRef.childByAutoId()
+        postRef.updateChildValues(postDictionary) { (error, referece) in
+            if let error = error {
+                print("Error coccured while saving the post in DB", error)
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                return
+            }
+            
+            print("Post saved successfully in DB")
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }
