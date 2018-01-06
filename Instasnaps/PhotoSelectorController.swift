@@ -17,6 +17,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     var images = [UIImage]()
     var imageAssets = [PHAsset]()
     var selectedImage: UIImage?
+    var header: PhotoHeaderCell?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +47,9 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     }
     
     @objc fileprivate func handleNext(){
-        print(123)
+        let shareController = SharePhotoController()
+        shareController.selectedImage = header?.photoImageView.image
+        navigationController?.pushViewController(shareController, animated: true)
     }
     
     fileprivate func fetchPhotos() {
@@ -63,6 +66,10 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
                     if let image = image{
                         self.images.append(image)
                         self.imageAssets.append(asset)
+                    }
+                    
+                    if count == 0{
+                        self.selectedImage = image
                     }
                     
                     if count == allPhotos.count - 1{
@@ -112,7 +119,7 @@ extension PhotoSelectorController{
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerCell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! PhotoHeaderCell
         headerCell.photoImageView.image = selectedImage
-        
+        self.header = headerCell
         if let image = selectedImage{
             if let index = images.index(of: image) {
                 let selectedImageAsset = imageAssets[index]
@@ -139,5 +146,7 @@ extension PhotoSelectorController{
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedImage = images[indexPath.item]
         self.collectionView?.reloadData()
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
     }
 }
