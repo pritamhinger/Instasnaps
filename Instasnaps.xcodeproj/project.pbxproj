@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		482DF9342003E45F003D16D7 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482DF9332003E45F003D16D7 /* Post.swift */; };
+		482DF9362003E57D003D16D7 /* UserProfilePhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482DF9352003E57D003D16D7 /* UserProfilePhotoCollectionViewCell.swift */; };
 		48BEAD9E1FF2C1FA00BF689F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BEAD9D1FF2C1FA00BF689F /* AppDelegate.swift */; };
 		48BEADA01FF2C1FA00BF689F /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BEAD9F1FF2C1FA00BF689F /* SignUpController.swift */; };
 		48BEADA31FF2C1FA00BF689F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48BEADA11FF2C1FA00BF689F /* Main.storyboard */; };
@@ -29,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		0C81A00BC4ECD9F8F37EEBCC /* Pods-Instasnaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instasnaps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instasnaps/Pods-Instasnaps.debug.xcconfig"; sourceTree = "<group>"; };
+		482DF9332003E45F003D16D7 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		482DF9352003E57D003D16D7 /* UserProfilePhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		48BEAD9A1FF2C1FA00BF689F /* Instasnaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instasnaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48BEAD9D1FF2C1FA00BF689F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48BEAD9F1FF2C1FA00BF689F /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -164,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				48E602311FF8C2ED00E6C1A4 /* UserProfileHeader.swift */,
+				482DF9352003E57D003D16D7 /* UserProfilePhotoCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -172,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				48E602341FF8C50B00E6C1A4 /* User.swift */,
+				482DF9332003E45F003D16D7 /* Post.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -381,10 +387,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				48BEADB21FF41C6500BF689F /* UIColor+Extension.swift in Sources */,
+				482DF9362003E57D003D16D7 /* UserProfilePhotoCollectionViewCell.swift in Sources */,
 				48E602321FF8C2ED00E6C1A4 /* UserProfileHeader.swift in Sources */,
 				48BEADA01FF2C1FA00BF689F /* SignUpController.swift in Sources */,
 				48E602441FFAB1B400E6C1A4 /* PhotoHeaderCell.swift in Sources */,
 				48E6022F1FF8B6CD00E6C1A4 /* UserProfileController.swift in Sources */,
+				482DF9342003E45F003D16D7 /* Post.swift in Sources */,
 				48E6023A1FF90EF800E6C1A4 /* LoginController.swift in Sources */,
 				48E602351FF8C50B00E6C1A4 /* User.swift in Sources */,
 				48E6022B1FF8B63100E6C1A4 /* MainTabBarController.swift in Sources */,

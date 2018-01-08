@@ -14,7 +14,9 @@ class UserProfileController: UICollectionViewController {
     
     let headerReusableIdentifier = "headerId"
     let cellReusableIdentifier = "cellId"
+    
     var user: UserProfile?
+    var posts = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +24,11 @@ class UserProfileController: UICollectionViewController {
         fetchUser()
         
         collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReusableIdentifier)
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellReusableIdentifier)
+        collectionView?.register(UserProfilePhotoCollectionViewCell.self, forCellWithReuseIdentifier: cellReusableIdentifier)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogout))
+        
+        fetchUserPosts()
     }
     
     fileprivate func fetchUser() {
@@ -43,13 +47,35 @@ class UserProfileController: UICollectionViewController {
         })
     }
     
+    fileprivate func fetchUserPosts(){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let userPostRef = Database.database().reference().child("posts").child(uid)
+        
+        userPostRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let allPostsDictionary = snapshot.value as? [String: Any] else { return }
+            allPostsDictionary.forEach({ (key, value) in
+                
+                guard let postJSON = value as? [String: Any] else { return }
+                
+                let post = Post(dictionary: postJSON)
+                self.posts.append(post)
+            })
+            
+            self.collectionView?.reloadData()
+        }) { (error) in
+            print("Error occured fetching user's post from Database")
+        }
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return posts.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReusableIdentifier, for: indexPath)
-        cell.backgroundColor = .purple
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReusableIdentifier, for: indexPath) as! UserProfilePhotoCollectionViewCell
+        cell.post = posts[indexPath.item]
         return cell
     }
     
