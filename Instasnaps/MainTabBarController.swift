@@ -27,7 +27,13 @@ class MainTabBarController: UITabBarController {
     
     func setupTabBarControllers() {
         
-        let homeNavController = instantiateViewController(selectedImage: #imageLiteral(resourceName: "home_selected"), unselectedImage: #imageLiteral(resourceName: "home_unselected"), tabTitle: "Home")
+        let homeLayout = UICollectionViewFlowLayout()
+        let homeController = HomeFeedController(collectionViewLayout: homeLayout)
+        let homeNavController = UINavigationController(rootViewController: homeController)
+        homeNavController.tabBarItem.image = #imageLiteral(resourceName: "home_unselected")
+        homeNavController.tabBarItem.selectedImage = #imageLiteral(resourceName: "home_selected")
+        homeNavController.tabBarItem.title = "Home";
+        
         let searchNavController = instantiateViewController(selectedImage: #imageLiteral(resourceName: "search_selected"), unselectedImage: #imageLiteral(resourceName: "search_unselected"), tabTitle: "Search")
         let selectSnapNavController = instantiateViewController(selectedImage: #imageLiteral(resourceName: "plus_unselected"), unselectedImage: #imageLiteral(resourceName: "plus_unselected"), tabTitle: "Pick")
         let likeNavController = instantiateViewController(selectedImage: #imageLiteral(resourceName: "like_selected"), unselectedImage: #imageLiteral(resourceName: "like_unselected"), tabTitle: "Like")

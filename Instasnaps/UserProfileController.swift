@@ -64,28 +64,6 @@ class UserProfileController: UICollectionViewController {
         }
     }
     
-    fileprivate func fetchUserPosts(){
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        
-        let userPostRef = Database.database().reference().child("posts").child(uid)
-        
-        userPostRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            guard let allPostsDictionary = snapshot.value as? [String: Any] else { return }
-            allPostsDictionary.forEach({ (key, value) in
-                
-                guard let postJSON = value as? [String: Any] else { return }
-                
-                let post = Post(dictionary: postJSON)
-                self.posts.append(post)
-            })
-            
-            self.collectionView?.reloadData()
-        }) { (error) in
-            print("Error occured fetching user's post from Database")
-        }
-    }
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count
     }
