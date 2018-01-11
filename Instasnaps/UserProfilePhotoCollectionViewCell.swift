@@ -13,12 +13,12 @@ class UserProfilePhotoCollectionViewCell: UICollectionViewCell {
     var post: Post? {
         didSet{
             guard let imageUrl = post?.postImageUrl else { return }
-            fetchImage(fromUrl: imageUrl)
+            postImageView.loadImage(withUrlString: imageUrl)
         }
     }
     
-    let postImageView: UIImageView = {
-        let imageView = UIImageView()
+    let postImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.backgroundColor = .red
@@ -33,24 +33,5 @@ class UserProfilePhotoCollectionViewCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    fileprivate func fetchImage(fromUrl urlString: String) {
-        guard let url = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                print("Error occured while fetching image", error)
-                return
-            }
-            
-            guard let imageData = data else { return }
-            print(imageData)
-            guard let image = UIImage(data: imageData) else { return }
-            DispatchQueue.main.async {
-                print("Setting image")
-                self.postImageView.image = image
-            }
-            
-        }.resume()
     }
 }

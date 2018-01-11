@@ -28,7 +28,8 @@ class UserProfileController: UICollectionViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogout))
         
-        fetchUserPosts()
+        //fetchUserPosts()
+        fetchOrderedUserPosts()
     }
     
     fileprivate func fetchUser() {
@@ -45,6 +46,22 @@ class UserProfileController: UICollectionViewController {
         }, withCancel: {(error) in
             print("Error occred while reading user profile")
         })
+    }
+    
+    fileprivate func fetchOrderedUserPosts(){
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let userPostRef = Database.database().reference().child("posts").child(uid)
+        userPostRef.queryOrdered(byChild: "createdOn").observe(.childAdded, with: { (snapshot) in
+            guard let postDictionary = snapshot.value as? [String: Any] else { return }
+            
+            let post = Post(dictionary: postDictionary)
+            self.posts.append(post)
+            
+            self.collectionView?.reloadData()
+        }) { (error) in
+            print("Error occured while loading the user's posts", error)
+        }
     }
     
     fileprivate func fetchUserPosts(){

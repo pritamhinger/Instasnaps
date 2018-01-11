@@ -12,13 +12,14 @@ class UserProfileHeader: UICollectionViewCell {
     
     var user: UserProfile?{
         didSet{
-            fetchProfileImage()
             usernameLabel.text = user?.username
+            guard let profileImageUrl = user?.profileImageUrl else { return }
+            profileImageView.loadImage(withUrlString: profileImageUrl)
         }
     }
     
-    let profileImageView: UIImageView = {
-        let imageView = UIImageView()
+    let profileImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.layer.cornerRadius = 80 / 2
         imageView.layer.masksToBounds = true
         return imageView
@@ -111,25 +112,6 @@ class UserProfileHeader: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    fileprivate func fetchProfileImage() {
-        guard let profileImageUrl = user?.profileImageUrl else { return }
-        
-        guard let url = URL(string: profileImageUrl) else { return }
-
-        URLSession.shared.dataTask(with: url, completionHandler: { (data, reponse, error) in
-            if let error = error {
-                print("Failed to fetch data from url", error)
-                return
-            }
-
-            guard let data = data else { return }
-            guard let profileImage = UIImage(data: data) else { return }
-            DispatchQueue.main.async {
-                self.profileImageView.image = profileImage
-            }
-        }).resume()
     }
     
     fileprivate func setupBottomBarControls() {
