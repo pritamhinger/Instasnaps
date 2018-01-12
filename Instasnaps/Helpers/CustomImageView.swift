@@ -40,7 +40,6 @@ class CustomImageView: UIImageView {
             guard let image = UIImage(data: imageData) else { return }
             imageCache[url.absoluteString] = image
             DispatchQueue.main.async {
-                print("Setting image")
                 self.image = image
             }
             
