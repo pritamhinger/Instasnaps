@@ -14,6 +14,12 @@ class HomeFeedCell: UICollectionViewCell {
         didSet{
             guard let imageUrl = post?.postImageUrl else { return }
             photoImageView.loadImage(withUrlString: imageUrl)
+            usernameLabel.text = post?.user.username
+            
+            formatPostCaption()
+            
+            guard let profileImageUrl = post?.user.profileImageUrl else { return }
+            postUserProfileImageView.loadImage(withUrlString: profileImageUrl)
         }
     }
     
@@ -21,7 +27,6 @@ class HomeFeedCell: UICollectionViewCell {
         let imageView = CustomImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.backgroundColor = .red
         return imageView
     }()
     
@@ -29,7 +34,6 @@ class HomeFeedCell: UICollectionViewCell {
         let imageView = CustomImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.backgroundColor = .blue
         return imageView
     }()
     
@@ -73,11 +77,6 @@ class HomeFeedCell: UICollectionViewCell {
     
     let captionLabel: UILabel = {
         let label = UILabel()
-        let attributedText = NSMutableAttributedString(string: "Username", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
-        attributedText.append(NSAttributedString(string: " some caption will go here which may go to net line as well.", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]))
-        attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 4)]))
-        attributedText.append(NSAttributedString(string: "1 Week ago", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor: UIColor.gray]))
-        label.attributedText = attributedText
         label.numberOfLines = 0
         return label
     }()
@@ -117,5 +116,16 @@ class HomeFeedCell: UICollectionViewCell {
         
         stackView.anchor(top: photoImageView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, topPadding: 0, leftPadding: 8, bottomPadding: 0, rightPadding: 0, width: 120, height: 50)
         bookmarkButton.anchor(top: photoImageView.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 8, width: 40, height: 50)
+    }
+    
+    fileprivate func formatPostCaption() {
+        
+        guard let post = self.post else { return }
+        
+        let attributedText = NSMutableAttributedString(string: post.user.username, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
+        attributedText.append(NSAttributedString(string: " \(post.caption)", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]))
+        attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 4)]))
+        attributedText.append(NSAttributedString(string: "1 Week ago", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor: UIColor.gray]))
+        captionLabel.attributedText = attributedText
     }
 }

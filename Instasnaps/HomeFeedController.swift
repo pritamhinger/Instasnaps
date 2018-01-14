@@ -35,22 +35,29 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
     fileprivate func fetchUserPosts(){
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        let userPostRef = Database.database().reference().child("posts").child(uid)
-        
-        userPostRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let userDictionay = snapshot.value as? [String: Any] else{ return }
+            let user = UserProfile(dictionary: userDictionay)
+            let userPostRef = Database.database().reference().child("posts").child(uid)
             
-            guard let allPostsDictionary = snapshot.value as? [String: Any] else { return }
-            allPostsDictionary.forEach({ (key, value) in
+            userPostRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 
-                guard let postJSON = value as? [String: Any] else { return }
+                guard let allPostsDictionary = snapshot.value as? [String: Any] else { return }
+                allPostsDictionary.forEach({ (key, value) in
+                    
+                    guard let postJSON = value as? [String: Any] else { return }
+                    
+                    let post = Post(user: user, dictionary: postJSON)
+                    
+                    self.posts.append(post)
+                })
                 
-                let post = Post(dictionary: postJSON)
-                self.posts.append(post)
-            })
-            
-            self.collectionView?.reloadData()
+                self.collectionView?.reloadData()
+            }) { (error) in
+                print("Error occured fetching user's post from Database")
+            }
         }) { (error) in
-            print("Error occured fetching user's post from Database")
+            print("Error occured while fetching user", error)
         }
     }
     

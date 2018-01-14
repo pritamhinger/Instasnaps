@@ -27,9 +27,6 @@ class UserProfileController: UICollectionViewController {
         collectionView?.register(UserProfilePhotoCollectionViewCell.self, forCellWithReuseIdentifier: cellReusableIdentifier)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogout))
-        
-        //fetchUserPosts()
-        fetchOrderedUserPosts()
     }
     
     fileprivate func fetchUser() {
@@ -42,6 +39,7 @@ class UserProfileController: UICollectionViewController {
             self.user = UserProfile(dictionary: userProfileDictionary)
             self.navigationItem.title = self.user?.username
             self.collectionView?.reloadData()
+            self.fetchOrderedUserPosts()
             
         }, withCancel: {(error) in
             print("Error occred while reading user profile")
@@ -55,8 +53,9 @@ class UserProfileController: UICollectionViewController {
         userPostRef.queryOrdered(byChild: "createdOn").observe(.childAdded, with: { (snapshot) in
             guard let postDictionary = snapshot.value as? [String: Any] else { return }
             
-            let post = Post(dictionary: postDictionary)
-            self.posts.append(post)
+            guard let user = self.user else { return }
+            let post = Post(user: user, dictionary: postDictionary)
+            self.posts.insert(post, at: 0)
             
             self.collectionView?.reloadData()
         }) { (error) in
