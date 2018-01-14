@@ -34,30 +34,30 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
     
     fileprivate func fetchUserPosts(){
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        Database.fetchUserWithUID(uid: uid) { (user) in
+            self.fetchPostsForUser(user: user)
+        }
+    }
+    
+    fileprivate func fetchPostsForUser(user: UserProfile) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let userPostRef = Database.database().reference().child("posts").child(uid)
         
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let userDictionay = snapshot.value as? [String: Any] else{ return }
-            let user = UserProfile(dictionary: userDictionay)
-            let userPostRef = Database.database().reference().child("posts").child(uid)
+        userPostRef.observeSingleEvent(of: .value, with: { (snapshot) in
             
-            userPostRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let allPostsDictionary = snapshot.value as? [String: Any] else { return }
+            allPostsDictionary.forEach({ (key, value) in
                 
-                guard let allPostsDictionary = snapshot.value as? [String: Any] else { return }
-                allPostsDictionary.forEach({ (key, value) in
-                    
-                    guard let postJSON = value as? [String: Any] else { return }
-                    
-                    let post = Post(user: user, dictionary: postJSON)
-                    
-                    self.posts.append(post)
-                })
+                guard let postJSON = value as? [String: Any] else { return }
                 
-                self.collectionView?.reloadData()
-            }) { (error) in
-                print("Error occured fetching user's post from Database")
-            }
+                let post = Post(user: user, dictionary: postJSON)
+                
+                self.posts.append(post)
+            })
+            
+            self.collectionView?.reloadData()
         }) { (error) in
-            print("Error occured while fetching user", error)
+            print("Error occured fetching user's post from Database")
         }
     }
     

@@ -32,18 +32,12 @@ class UserProfileController: UICollectionViewController {
     fileprivate func fetchUser() {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: {(snapshot) in
-            print(snapshot.value ?? "Value is nil or empty")
-            guard let userProfileDictionary = snapshot.value as? [String: Any] else {return}
-            
-            self.user = UserProfile(dictionary: userProfileDictionary)
+        Database.fetchUserWithUID(uid: uid) { (user) in
+            self.user = user
             self.navigationItem.title = self.user?.username
             self.collectionView?.reloadData()
             self.fetchOrderedUserPosts()
-            
-        }, withCancel: {(error) in
-            print("Error occred while reading user profile")
-        })
+        }
     }
     
     fileprivate func fetchOrderedUserPosts(){
