@@ -12,6 +12,14 @@ class UserSearchCell: UICollectionViewCell {
     
     let imageViewSide: CGFloat = 50
     
+    var user: UserProfile?{
+        didSet{
+            usernameLabel.text = user?.username
+            guard let profileImageUrl = user?.profileImageUrl else { return }
+            userProfileImageView.loadImage(withUrlString: profileImageUrl)
+        }
+    }
+    
     let userProfileImageView: CustomImageView = {
         let imageView = CustomImageView()
         imageView.backgroundColor = .red
