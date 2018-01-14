@@ -25,12 +25,18 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         return searchBar
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        userSearchBar.isHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView?.backgroundColor = .white
         collectionView?.register(UserSearchCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.alwaysBounceVertical = true
+        collectionView?.keyboardDismissMode = .onDrag
         
         let navBar = navigationController?.navigationBar
         navBar?.addSubview(userSearchBar)
@@ -53,6 +59,17 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         return CGSize(width: view.frame.width, height: 66)
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let user = filteredUsers[indexPath.item]
+        
+        userSearchBar.isHidden = true
+        userSearchBar.resignFirstResponder()
+        
+        let userProfileController = UserProfileController(collectionViewLayout: UICollectionViewFlowLayout())
+        userProfileController.userId = user.uid
+        navigationController?.pushViewController(userProfileController, animated: true)
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty{
             filteredUsers = users
@@ -70,6 +87,12 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         Database.database().reference().child("users").observeSingleEvent(of: .value, with: { (snapshot) in
             guard let userDictionary = snapshot.value as? [String: Any] else { return }
             userDictionary.forEach({ (key, value) in
+                
+                if key == Auth.auth().currentUser?.uid{
+                    print("Found myself.. Omitting myself from the list")
+                    return
+                }
+                
                 guard let userJSON = value as? [String: Any] else { return }
                 let user = UserProfile(uid: key, dictionary: userJSON)
                 self.users.append(user)

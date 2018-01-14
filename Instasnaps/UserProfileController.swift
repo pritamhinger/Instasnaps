@@ -17,6 +17,7 @@ class UserProfileController: UICollectionViewController {
     
     var user: UserProfile?
     var posts = [Post]()
+    var userId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +31,7 @@ class UserProfileController: UICollectionViewController {
     }
     
     fileprivate func fetchUser() {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        
+        let uid = userId ?? (Auth.auth().currentUser?.uid ?? "")
         Database.fetchUserWithUID(uid: uid) { (user) in
             self.user = user
             self.navigationItem.title = self.user?.username
@@ -41,7 +41,7 @@ class UserProfileController: UICollectionViewController {
     }
     
     fileprivate func fetchOrderedUserPosts(){
-        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let uid = self.user?.uid else { return }
         
         let userPostRef = Database.database().reference().child("posts").child(uid)
         userPostRef.queryOrdered(byChild: "createdOn").observe(.childAdded, with: { (snapshot) in
