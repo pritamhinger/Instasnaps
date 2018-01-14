@@ -63,7 +63,7 @@ class SharePhotoController: UIViewController {
     @objc func handleShare(){
         guard let caption = shareTextView.text, caption.count > 0 else { return }
         guard let image = selectedImage else { return }
-        guard let imageData = UIImageJPEGRepresentation(image, 0.5) else { return }
+        guard let imageData = UIImageJPEGRepresentation(image, 0.2) else { return }
         
         navigationItem.rightBarButtonItem?.isEnabled = false
         

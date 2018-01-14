@@ -27,31 +27,28 @@ class MainTabBarController: UITabBarController {
     
     func setupTabBarControllers() {
         
-        let homeLayout = UICollectionViewFlowLayout()
-        let homeController = HomeFeedController(collectionViewLayout: homeLayout)
-        let homeNavController = UINavigationController(rootViewController: homeController)
-        homeNavController.tabBarItem.image = #imageLiteral(resourceName: "home_unselected")
-        homeNavController.tabBarItem.selectedImage = #imageLiteral(resourceName: "home_selected")
-        homeNavController.tabBarItem.title = "Home";
+        // Home Tab
+        let homeNavController = instantiateViewController(selectedImage: #imageLiteral(resourceName: "home_selected"), unselectedImage: #imageLiteral(resourceName: "home_unselected"), tabTitle: "Home", viewController: HomeFeedController(collectionViewLayout: UICollectionViewFlowLayout()))
         
-        let searchNavController = instantiateViewController(selectedImage: #imageLiteral(resourceName: "search_selected"), unselectedImage: #imageLiteral(resourceName: "search_unselected"), tabTitle: "Search")
+        // Search Tab
+        let searchNavController = instantiateViewController(selectedImage: #imageLiteral(resourceName: "search_selected"), unselectedImage: #imageLiteral(resourceName: "search_unselected"), tabTitle: "Search", viewController: UserSearchController(collectionViewLayout: UICollectionViewFlowLayout()))
+        
+        // Select Photo Tab
         let selectSnapNavController = instantiateViewController(selectedImage: #imageLiteral(resourceName: "plus_unselected"), unselectedImage: #imageLiteral(resourceName: "plus_unselected"), tabTitle: "Pick")
+        
+        // Select Like Tab
         let likeNavController = instantiateViewController(selectedImage: #imageLiteral(resourceName: "like_selected"), unselectedImage: #imageLiteral(resourceName: "like_unselected"), tabTitle: "Like")
         
-        let layout = UICollectionViewFlowLayout()
-        let userProfileController = UserProfileController(collectionViewLayout: layout)
-        let userProfileNavController = UINavigationController(rootViewController: userProfileController)
+        // UserProfile Tab
+        let userProfileNavController = instantiateViewController(selectedImage: #imageLiteral(resourceName: "profile_selected"), unselectedImage: #imageLiteral(resourceName: "profile_unselected"), tabTitle: "Profile", viewController:
+            UserProfileController(collectionViewLayout: UICollectionViewFlowLayout()))
         
-        userProfileNavController.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
-        userProfileNavController.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")
-        userProfileNavController.tabBarItem.title = "Profile"
         viewControllers = [homeNavController, searchNavController, selectSnapNavController, likeNavController, userProfileNavController]
         
         tabBar.tintColor = .black
     }
     
-    private func instantiateViewController(selectedImage: UIImage, unselectedImage: UIImage, tabTitle: String) -> UINavigationController{
-        let viewController = UIViewController()
+    private func instantiateViewController(selectedImage: UIImage, unselectedImage: UIImage, tabTitle: String, viewController: UIViewController = UIViewController()) -> UINavigationController{
         let navController = UINavigationController(rootViewController: viewController)
         navController.tabBarItem.selectedImage = selectedImage
         navController.tabBarItem.image = unselectedImage
