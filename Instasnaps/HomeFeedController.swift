@@ -37,10 +37,12 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
         guard let currentLoggedInUser = Auth.auth().currentUser?.uid else { return }
         
         Database.database().reference().child("following").child(currentLoggedInUser).observeSingleEvent(of: .value, with: { (snapshot) in
+            
             guard let userIdsDictionary = snapshot.value as? [String: Any] else { return }
+            
             userIdsDictionary.forEach({ (key, value) in
+                
                 Database.fetchUserWithUID(uid: key, onCompletionHandler: { (user) in
-                    print("Fetching post for user \(user.username)")
                     self.fetchPostsForUser(user: user)
                 })
             })
@@ -57,8 +59,6 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     fileprivate func fetchPostsForUser(user: UserProfile) {
-        var count = 0
-        //guard let uid = Auth.auth().currentUser?.uid else { return }
         let userPostRef = Database.database().reference().child("posts").child(user.uid)
         
         userPostRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -69,12 +69,13 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
                 guard let postJSON = value as? [String: Any] else { return }
                 
                 let post = Post(user: user, dictionary: postJSON)
-                
-                count += 1
                 self.posts.append(post)
             })
             
-            print("Total posts for \(user.username) is : \(count)")
+            self.posts.sort(by: { (post1, post2) -> Bool in
+                return post1.creationDate.compare(post2.creationDate) == .orderedDescending
+            })
+            
             self.collectionView?.reloadData()
         }) { (error) in
             print("Error occured fetching user's post from Database")

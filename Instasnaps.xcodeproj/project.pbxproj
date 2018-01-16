@@ -15,6 +15,7 @@
 		48AF6CFA200B2B3E00B833CB /* FirebaseDatabase+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6CF9200B2B3E00B833CB /* FirebaseDatabase+Extenstion.swift */; };
 		48AF6D01200B37DE00B833CB /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6D00200B37DE00B833CB /* UserSearchController.swift */; };
 		48AF6D03200B3C7700B833CB /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6D02200B3C7700B833CB /* UserSearchCell.swift */; };
+		48AF6D05200E7DBA00B833CB /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6D04200E7DBA00B833CB /* Date+Extension.swift */; };
 		48BEAD9E1FF2C1FA00BF689F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BEAD9D1FF2C1FA00BF689F /* AppDelegate.swift */; };
 		48BEADA01FF2C1FA00BF689F /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BEAD9F1FF2C1FA00BF689F /* SignUpController.swift */; };
 		48BEADA31FF2C1FA00BF689F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48BEADA11FF2C1FA00BF689F /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		48AF6CF9200B2B3E00B833CB /* FirebaseDatabase+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirebaseDatabase+Extenstion.swift"; sourceTree = "<group>"; };
 		48AF6D00200B37DE00B833CB /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
 		48AF6D02200B3C7700B833CB /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
+		48AF6D04200E7DBA00B833CB /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		48BEAD9A1FF2C1FA00BF689F /* Instasnaps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instasnaps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48BEAD9D1FF2C1FA00BF689F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48BEAD9F1FF2C1FA00BF689F /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				48BEADB11FF41C6500BF689F /* UIColor+Extension.swift */,
 				48BEADB31FF41D1200BF689F /* UIView+Extension.swift */,
 				48AF6CF9200B2B3E00B833CB /* FirebaseDatabase+Extenstion.swift */,
+				48AF6D04200E7DBA00B833CB /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48BEADB21FF41C6500BF689F /* UIColor+Extension.swift in Sources */,
+				48AF6D05200E7DBA00B833CB /* Date+Extension.swift in Sources */,
 				482DF9362003E57D003D16D7 /* UserProfilePhotoCollectionViewCell.swift in Sources */,
 				48E602321FF8C2ED00E6C1A4 /* UserProfileHeader.swift in Sources */,
 				48BEADA01FF2C1FA00BF689F /* SignUpController.swift in Sources */,
