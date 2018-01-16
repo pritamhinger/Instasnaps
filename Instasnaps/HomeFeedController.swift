@@ -23,6 +23,7 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
         
         setUpNavigationBarControls()
         fetchUserPosts()
+        fetchFollowingUsersPosts()
     }
     
     fileprivate func setUpNavigationBarControls(){
@@ -30,6 +31,22 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
         label.font = UIFont(name: "Zapfino", size: 20)
         label.text = "InstaSnaps"
         navigationItem.titleView = label
+    }
+    
+    fileprivate func fetchFollowingUsersPosts() {
+        guard let currentLoggedInUser = Auth.auth().currentUser?.uid else { return }
+        
+        Database.database().reference().child("following").child(currentLoggedInUser).observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let userIdsDictionary = snapshot.value as? [String: Any] else { return }
+            userIdsDictionary.forEach({ (key, value) in
+                Database.fetchUserWithUID(uid: key, onCompletionHandler: { (user) in
+                    print("Fetching post for user \(user.username)")
+                    self.fetchPostsForUser(user: user)
+                })
+            })
+        }) { (error) in
+            print("Error occured while fetching list of users being followed")
+        }
     }
     
     fileprivate func fetchUserPosts(){
@@ -40,8 +57,9 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     fileprivate func fetchPostsForUser(user: UserProfile) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let userPostRef = Database.database().reference().child("posts").child(uid)
+        var count = 0
+        //guard let uid = Auth.auth().currentUser?.uid else { return }
+        let userPostRef = Database.database().reference().child("posts").child(user.uid)
         
         userPostRef.observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -52,9 +70,11 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
                 
                 let post = Post(user: user, dictionary: postJSON)
                 
+                count += 1
                 self.posts.append(post)
             })
             
+            print("Total posts for \(user.username) is : \(count)")
             self.collectionView?.reloadData()
         }) { (error) in
             print("Error occured fetching user's post from Database")
