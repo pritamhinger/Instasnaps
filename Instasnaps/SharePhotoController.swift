@@ -11,6 +11,8 @@ import Firebase
 
 class SharePhotoController: UIViewController {
     
+    static let updateFeedNotificatioName = Notification.Name("updateFeed")
+    
     let containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -97,6 +99,7 @@ class SharePhotoController: UIViewController {
             
             print("Post saved successfully in DB")
             self.dismiss(animated: true, completion: nil)
+            NotificationCenter.default.post(name: SharePhotoController.updateFeedNotificatioName, object: nil)
         }
     }
 }

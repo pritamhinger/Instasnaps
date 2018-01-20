@@ -17,13 +17,33 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView?.backgroundColor = .white
+
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeedNotification), name: SharePhotoController.updateFeedNotificatioName, object: nil)
+        let refeshControl = UIRefreshControl()
+        refeshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView?.refreshControl = refeshControl
         
         collectionView?.register(HomeFeedCell.self, forCellWithReuseIdentifier: cellId)
         collectionView?.dataSource = self
         
         setUpNavigationBarControls()
+        fetchAllPosts()
+    }
+    
+    fileprivate func fetchAllPosts() {
         fetchUserPosts()
         fetchFollowingUsersPosts()
+    }
+    
+    @objc fileprivate func handleUpdateFeedNotification(){
+        handleRefresh()
+    }
+    
+    @objc fileprivate func handleRefresh() {
+        print("Refreshing")
+        posts.removeAll()
+        fetchAllPosts()
+        //collectionView?.refreshControl?.endRefreshing()
     }
     
     fileprivate func setUpNavigationBarControls(){
@@ -62,7 +82,7 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
         let userPostRef = Database.database().reference().child("posts").child(user.uid)
         
         userPostRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            
+            self.collectionView?.refreshControl?.endRefreshing()
             guard let allPostsDictionary = snapshot.value as? [String: Any] else { return }
             allPostsDictionary.forEach({ (key, value) in
                 
