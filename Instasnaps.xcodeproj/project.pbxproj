@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		482DF9342003E45F003D16D7 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482DF9332003E45F003D16D7 /* Post.swift */; };
 		482DF9362003E57D003D16D7 /* UserProfilePhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482DF9352003E57D003D16D7 /* UserProfilePhotoCollectionViewCell.swift */; };
+		4835E53220134AB800D10DA4 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4835E53120134AB800D10DA4 /* CameraController.swift */; };
 		48AF6CF02007C98400B833CB /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6CEF2007C98400B833CB /* CustomImageView.swift */; };
 		48AF6CF52007DD5700B833CB /* HomeFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6CF42007DD5700B833CB /* HomeFeedController.swift */; };
 		48AF6CF82007DFCF00B833CB /* HomeFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6CF72007DFCF00B833CB /* HomeFeedCell.swift */; };
@@ -40,6 +41,7 @@
 		0C81A00BC4ECD9F8F37EEBCC /* Pods-Instasnaps.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instasnaps.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instasnaps/Pods-Instasnaps.debug.xcconfig"; sourceTree = "<group>"; };
 		482DF9332003E45F003D16D7 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		482DF9352003E57D003D16D7 /* UserProfilePhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		4835E53120134AB800D10DA4 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		48AF6CEF2007C98400B833CB /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		48AF6CF42007DD5700B833CB /* HomeFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedController.swift; sourceTree = "<group>"; };
 		48AF6CF72007DFCF00B833CB /* HomeFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedCell.swift; sourceTree = "<group>"; };
@@ -89,6 +91,22 @@
 				C5C2D0FEBFE2B8BB3735FC5A /* Pods-Instasnaps.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		4835E52F20134AA100D10DA4 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				4835E53020134AAC00D10DA4 /* Controller */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		4835E53020134AAC00D10DA4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4835E53120134AB800D10DA4 /* CameraController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		48AF6CEE2007C96300B833CB /* FrameworkSubclass */ = {
@@ -178,6 +196,7 @@
 		48BEAD9C1FF2C1FA00BF689F /* Instasnaps */ = {
 			isa = PBXGroup;
 			children = (
+				4835E52F20134AA100D10DA4 /* Camera */,
 				48AF6CFC200B37B500B833CB /* Search */,
 				48AF6CF12007DD3300B833CB /* HomeFeed */,
 				48E6023B1FFA79C000E6C1A4 /* PhotoSelector */,
@@ -472,6 +491,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				48BEADB21FF41C6500BF689F /* UIColor+Extension.swift in Sources */,
+				4835E53220134AB800D10DA4 /* CameraController.swift in Sources */,
 				48AF6D05200E7DBA00B833CB /* Date+Extension.swift in Sources */,
 				482DF9362003E57D003D16D7 /* UserProfilePhotoCollectionViewCell.swift in Sources */,
 				48E602321FF8C2ED00E6C1A4 /* UserProfileHeader.swift in Sources */,

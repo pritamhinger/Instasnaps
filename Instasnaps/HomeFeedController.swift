@@ -51,6 +51,8 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
         label.font = UIFont(name: "Zapfino", size: 20)
         label.text = "InstaSnaps"
         navigationItem.titleView = label
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "camera3").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(initializeCameraSession))
     }
     
     fileprivate func fetchFollowingUsersPosts() {
@@ -69,6 +71,12 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
         }) { (error) in
             print("Error occured while fetching list of users being followed")
         }
+    }
+    
+    @objc fileprivate func initializeCameraSession(){
+        print("Initializing Camera")
+        let cameraController = CameraController()
+        present(cameraController, animated: true, completion: nil)
     }
     
     fileprivate func fetchUserPosts(){
