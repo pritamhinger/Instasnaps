@@ -11,6 +11,8 @@
 		482DF9362003E57D003D16D7 /* UserProfilePhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482DF9352003E57D003D16D7 /* UserProfilePhotoCollectionViewCell.swift */; };
 		4835E53220134AB800D10DA4 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4835E53120134AB800D10DA4 /* CameraController.swift */; };
 		4866E4652013708A0031EA7C /* PreviewPhotoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866E4642013708A0031EA7C /* PreviewPhotoContainerView.swift */; };
+		4866E468201399E40031EA7C /* CustomTransitionAnimationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866E467201399E40031EA7C /* CustomTransitionAnimationPresenter.swift */; };
+		4866E46A20139B0E0031EA7C /* CustomTransitionAnimationDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866E46920139B0E0031EA7C /* CustomTransitionAnimationDismisser.swift */; };
 		48AF6CF02007C98400B833CB /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6CEF2007C98400B833CB /* CustomImageView.swift */; };
 		48AF6CF52007DD5700B833CB /* HomeFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6CF42007DD5700B833CB /* HomeFeedController.swift */; };
 		48AF6CF82007DFCF00B833CB /* HomeFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6CF72007DFCF00B833CB /* HomeFeedCell.swift */; };
@@ -44,6 +46,8 @@
 		482DF9352003E57D003D16D7 /* UserProfilePhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		4835E53120134AB800D10DA4 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		4866E4642013708A0031EA7C /* PreviewPhotoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPhotoContainerView.swift; sourceTree = "<group>"; };
+		4866E467201399E40031EA7C /* CustomTransitionAnimationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransitionAnimationPresenter.swift; sourceTree = "<group>"; };
+		4866E46920139B0E0031EA7C /* CustomTransitionAnimationDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransitionAnimationDismisser.swift; sourceTree = "<group>"; };
 		48AF6CEF2007C98400B833CB /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		48AF6CF42007DD5700B833CB /* HomeFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedController.swift; sourceTree = "<group>"; };
 		48AF6CF72007DFCF00B833CB /* HomeFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedCell.swift; sourceTree = "<group>"; };
@@ -118,6 +122,15 @@
 				4866E4642013708A0031EA7C /* PreviewPhotoContainerView.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		4866E466201399A40031EA7C /* CustomViewControllerTransitioning */ = {
+			isa = PBXGroup;
+			children = (
+				4866E467201399E40031EA7C /* CustomTransitionAnimationPresenter.swift */,
+				4866E46920139B0E0031EA7C /* CustomTransitionAnimationDismisser.swift */,
+			);
+			name = CustomViewControllerTransitioning;
 			sourceTree = "<group>";
 		};
 		48AF6CEE2007C96300B833CB /* FrameworkSubclass */ = {
@@ -228,6 +241,7 @@
 		48BEADAF1FF41C3A00BF689F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				4866E466201399A40031EA7C /* CustomViewControllerTransitioning */,
 				48AF6CEE2007C96300B833CB /* FrameworkSubclass */,
 				48BEADB01FF41C4A00BF689F /* Extensions */,
 			);
@@ -509,6 +523,7 @@
 				48BEADA01FF2C1FA00BF689F /* SignUpController.swift in Sources */,
 				48E602441FFAB1B400E6C1A4 /* PhotoHeaderCell.swift in Sources */,
 				48E6022F1FF8B6CD00E6C1A4 /* UserProfileController.swift in Sources */,
+				4866E468201399E40031EA7C /* CustomTransitionAnimationPresenter.swift in Sources */,
 				482DF9342003E45F003D16D7 /* Post.swift in Sources */,
 				48E6023A1FF90EF800E6C1A4 /* LoginController.swift in Sources */,
 				48AF6CF52007DD5700B833CB /* HomeFeedController.swift in Sources */,
@@ -524,6 +539,7 @@
 				4866E4652013708A0031EA7C /* PreviewPhotoContainerView.swift in Sources */,
 				48E602421FFA93D300E6C1A4 /* PhotoCell.swift in Sources */,
 				48AF6D03200B3C7700B833CB /* UserSearchCell.swift in Sources */,
+				4866E46A20139B0E0031EA7C /* CustomTransitionAnimationDismisser.swift in Sources */,
 				48E602401FFA79F300E6C1A4 /* PhotoSelectorController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

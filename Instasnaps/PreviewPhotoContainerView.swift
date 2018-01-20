@@ -55,7 +55,7 @@ class PreviewPhotoContainerView: UIView {
         guard let previewImage = self.previewImaegeView.image else { return }
         
         let photoLibrary = PHPhotoLibrary.shared()
-        photoLibrary.performChanges({    
+        photoLibrary.performChanges({
             PHAssetChangeRequest.creationRequestForAsset(from: previewImage)
             
         }) { (completed, error) in
