@@ -42,8 +42,8 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
     @objc fileprivate func handleRefresh() {
         print("Refreshing")
         posts.removeAll()
+        collectionView?.reloadData()
         fetchAllPosts()
-        //collectionView?.refreshControl?.endRefreshing()
     }
     
     fileprivate func setUpNavigationBarControls(){

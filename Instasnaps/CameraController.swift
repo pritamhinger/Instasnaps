@@ -33,6 +33,10 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         setupCameraControls()
     }
     
+    override var prefersStatusBarHidden: Bool{
+        return true
+    }
+    
     fileprivate func setupCameraControls() {
         view.addSubview(captureButton)
         captureButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, topPadding: 0, leftPadding: 0, bottomPadding: 24, rightPadding: 0, width: 80, height: 80)
@@ -60,13 +64,13 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         }
 
         let imageData = photo.fileDataRepresentation()
-        //let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photo.pixelBuffer as! CMSampleBuffer, previewPhotoSampleBuffer: (photo.previewPixelBuffer as! CMSampleBuffer))
-        let image = UIImage(data: imageData!)
-        print("Capturing Image", image!)
         
-        let previewImageView = UIImageView(image: image)
-        view.addSubview(previewImageView)
-        previewImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 0, width: 0, height: 0)
+        let image = UIImage(data: imageData!)
+        
+        let previewPhotoContainerView = PreviewPhotoContainerView()
+        view.addSubview(previewPhotoContainerView)
+        previewPhotoContainerView.previewImaegeView.image = image
+        previewPhotoContainerView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 0, width: 0, height: 0)
     }
     
     fileprivate func setUpCameraSession() {
