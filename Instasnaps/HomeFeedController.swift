@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout, HomeFeedTapDelegate {
     
     let cellId = "homeFeedCellIdentifier"
     var posts = [Post]()
@@ -117,6 +117,7 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! HomeFeedCell
         cell.post = posts[indexPath.item]
+        cell.delegate = self
         return cell
     }
     
@@ -126,5 +127,12 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
         height += 50
         height += 60
         return CGSize(width: view.frame.width, height: height)
+    }
+    
+    func didTappedComment(post: Post) {
+        print("Inside HomeFeedContrller")
+        print("Clicked Post is : \(post.caption)")
+        let commentController = CommentController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(commentController, animated: true)
     }
 }

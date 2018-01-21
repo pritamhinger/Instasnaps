@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol HomeFeedTapDelegate {
+    func didTappedComment(post: Post);
+}
+
 class HomeFeedCell: UICollectionViewCell {
     
     var post: Post? {
@@ -22,6 +26,8 @@ class HomeFeedCell: UICollectionViewCell {
             postUserProfileImageView.loadImage(withUrlString: profileImageUrl)
         }
     }
+    
+    var delegate: HomeFeedTapDelegate?
     
     let photoImageView: CustomImageView = {
         let imageView = CustomImageView()
@@ -57,9 +63,10 @@ class HomeFeedCell: UICollectionViewCell {
         return button
     }()
     
-    let commentButton: UIButton = {
+    lazy var commentButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "comment").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleCommentTap), for: .touchUpInside)
         return button
     }()
     
@@ -128,5 +135,11 @@ class HomeFeedCell: UICollectionViewCell {
         let timeAgoDisplayString = post.creationDate.timeAgoDisplay()
         attributedText.append(NSAttributedString(string: timeAgoDisplayString, attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor: UIColor.gray]))
         captionLabel.attributedText = attributedText
+    }
+    
+    @objc fileprivate func handleCommentTap(){
+        print("Comment Icon tapped")
+        guard let post = post else { return }
+        delegate?.didTappedComment(post: post)
     }
 }
