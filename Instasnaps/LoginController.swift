@@ -119,8 +119,6 @@ class LoginController: UIViewController {
                 return
             }
             
-            print("User with user id \(user?.uid ?? "Invalid User Id") is logged in")
-            
             guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
             mainTabBarController.setupTabBarControllers()
             self.dismiss(animated: true, completion: nil)

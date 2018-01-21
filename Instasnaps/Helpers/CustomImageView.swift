@@ -31,13 +31,12 @@ class CustomImageView: UIImageView {
             }
             
             if url.absoluteString != self.lastURLUsedToLoadImage{
-                print("Returning as url don't matched")
                 return
             }
             
             guard let imageData = data else { return }
-            print(imageData)
             guard let image = UIImage(data: imageData) else { return }
+            
             imageCache[url.absoluteString] = image
             DispatchQueue.main.async {
                 self.image = image

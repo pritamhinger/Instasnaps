@@ -162,7 +162,6 @@ class UserProfileHeader: UICollectionViewCell {
                         return
                     }
                     
-                    print("Successfully unfollowed the user : \(self.user?.username ?? "")")
                     self.setUpFollowButtonStyle()
                 })
             }
@@ -174,7 +173,6 @@ class UserProfileHeader: UICollectionViewCell {
                         return
                     }
                     
-                    print("Successfully following user : ", self.user?.username ?? "")
                     self.setUpUnfollowButtonStyle()
                 })
             }

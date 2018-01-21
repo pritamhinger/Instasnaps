@@ -9,11 +9,13 @@
 import Foundation
 
 struct Comment {
+    let user: UserProfile
     let text: String
     let uid: String
     
-    init(commentJSON: [String : Any]) {
+    init(user: UserProfile, commentJSON: [String : Any]) {
         self.text = commentJSON["commentText"] as? String ?? ""
         self.uid = commentJSON["commentedByUserId"] as? String ?? ""
+        self.user = user
     }
 }

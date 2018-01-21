@@ -33,21 +33,28 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
         submitButton.addTarget(self, action: #selector(handleCommentSubmit), for: .touchUpInside)
         commentView.addSubview(submitButton)
         
+        let lineSeparatorView = UIView()
+        lineSeparatorView.backgroundColor = UIColor.rgb(red: 230, green: 230, blue: 230)
         
         commentView.addSubview(self.commentTextField)
-        
+        commentView.addSubview(lineSeparatorView)
+        self.commentTextField.layer.cornerRadius = 5
         submitButton.anchor(top: commentView.topAnchor, left: nil, bottom: commentView.bottomAnchor, right: commentView.rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 12, width: 50, height: 0)
         self.commentTextField.anchor(top: commentView.topAnchor, left: commentView.leftAnchor, bottom: commentView.bottomAnchor, right: submitButton.leftAnchor, topPadding: 0, leftPadding: 12, bottomPadding: 0, rightPadding: 0, width: 0, height: 0)
+        lineSeparatorView.anchor(top: commentView.topAnchor, left: commentView.leftAnchor, bottom: nil, right: commentView.rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 0, width: 0, height: 1)
         return commentView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Comments"
-        collectionView?.backgroundColor = .purple
+        collectionView?.backgroundColor = .white
+        //collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: -50, right: 0)
+        //collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: -50, right: 0)
+        collectionView?.alwaysBounceVertical = true
+        collectionView?.keyboardDismissMode = .interactive
+        
         collectionView?.register(CommentCell.self, forCellWithReuseIdentifier: commentCellId)
-        collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: -50, right: 0)
-        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: -50, right: 0)
         
         fetchCommentsForPost()
     }
@@ -82,12 +89,23 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 50)
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+        let dummyCell = CommentCell(frame: frame)
+        dummyCell.comment = self.comments[indexPath.item]
+        dummyCell.layoutIfNeeded()
+        
+        let targetSize = CGSize(width: view.frame.width, height: 1000)
+        let estimatedSize = dummyCell.systemLayoutSizeFitting(targetSize)
+        let height = max(8 + 40 + 8, estimatedSize.height)
+        return CGSize(width: view.frame.width, height: height)
     }
     
     @objc fileprivate func handleCommentSubmit(){
-        print("Submitting comment")
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let postId = post?.postId else { return }
         guard let commentText = commentTextField.text else { return }
@@ -100,7 +118,7 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
                 return
             }
             
-            print("Successfully saved the comment")
+            self.commentTextField.text = nil
         }
     }
     
@@ -108,11 +126,17 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
         guard let postId = self.post?.postId else { return }
         let postCommentsRef = Database.database().reference().child("comments").child(postId)
         postCommentsRef.observe(.childAdded, with: { (snapshot) in
-
+            
             guard let commentJSON = snapshot.value as? [String : Any] else { return }
-            let comment = Comment(commentJSON: commentJSON)
-            self.comments.insert(comment, at: 0)
-            self.collectionView?.reloadData()
+            guard let uid = commentJSON["commentedByUserId"] as? String else { return }
+            
+            Database.fetchUserWithUID(uid: uid, onCompletionHandler: { (user) in
+                let comment = Comment(user: user, commentJSON: commentJSON)
+                self.comments.append(comment)
+                self.collectionView?.reloadData()
+                let indexPath = IndexPath(row: self.comments.count - 1, section: 0)
+                self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+            })
             
         }) { (error) in
             print("Error occured while fetching comments for the post", error)

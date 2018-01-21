@@ -89,7 +89,6 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
             userDictionary.forEach({ (key, value) in
                 
                 if key == Auth.auth().currentUser?.uid{
-                    print("Found myself.. Omitting myself from the list")
                     return
                 }
                 

@@ -113,8 +113,6 @@ class SignUpController: UIViewController {
                 return
             }
             
-            print("Successfully created user for authentication. User Id is : \(user?.uid ?? "")")
-
             guard let image = self.addPhotoButton.imageView?.image else {return}
             
             guard let imageData = UIImageJPEGRepresentation(image, 0.3) else {return}
@@ -126,9 +124,7 @@ class SignUpController: UIViewController {
                     return
                 }
                 
-                print("Successfully uploaded the profile image")
                 guard let imageUrl = metadata?.downloadURL()?.absoluteString else {return}
-                print("Image URL is : \(imageUrl)")
                 
                 guard let uid = user?.uid else {return}
                 
@@ -140,8 +136,6 @@ class SignUpController: UIViewController {
                         print("Error occured while saving user profile", error)
                         return
                     }
-                    
-                    print("USer Profile saved in Firebase Database")
                     
                     guard let mainTabBarController = UIApplication.shared.keyWindow?.rootViewController as? MainTabBarController else { return }
                     mainTabBarController.setupTabBarControllers()
@@ -195,6 +189,6 @@ extension SignUpController: UIImagePickerControllerDelegate, UINavigationControl
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("Action canceled by user")
+        
     }
 }

@@ -40,7 +40,6 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     @objc fileprivate func handleRefresh() {
-        print("Refreshing")
         posts.removeAll()
         collectionView?.reloadData()
         fetchAllPosts()
@@ -74,7 +73,6 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     @objc fileprivate func initializeCameraSession(){
-        print("Initializing Camera")
         let cameraController = CameraController()
         present(cameraController, animated: true, completion: nil)
     }
@@ -131,8 +129,6 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     func didTappedComment(post: Post) {
-        print("Inside HomeFeedContrller")
-        print("Clicked Post is : \(post.caption)")
         let commentController = CommentController(collectionViewLayout: UICollectionViewFlowLayout())
         commentController.post = post
         navigationController?.pushViewController(commentController, animated: true)

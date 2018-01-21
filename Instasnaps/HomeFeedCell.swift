@@ -138,7 +138,6 @@ class HomeFeedCell: UICollectionViewCell {
     }
     
     @objc fileprivate func handleCommentTap(){
-        print("Comment Icon tapped")
         guard let post = post else { return }
         delegate?.didTappedComment(post: post)
     }
