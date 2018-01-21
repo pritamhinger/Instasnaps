@@ -9,9 +9,11 @@
 import UIKit
 import Firebase
 
-class CommentController: UICollectionViewController {
+class CommentController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var post: Post?
+    var comments = [Comment]()
+    let commentCellId = "CommentCellIdentifier"
     
     let commentTextField: UITextField = {
         let textField = UITextField()
@@ -43,6 +45,11 @@ class CommentController: UICollectionViewController {
         super.viewDidLoad()
         navigationItem.title = "Comments"
         collectionView?.backgroundColor = .purple
+        collectionView?.register(CommentCell.self, forCellWithReuseIdentifier: commentCellId)
+        collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: -50, right: 0)
+        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: -50, right: 0)
+        
+        fetchCommentsForPost()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,6 +71,20 @@ class CommentController: UICollectionViewController {
     override var canBecomeFirstResponder: Bool{
         return true
     }
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return comments.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: commentCellId, for: indexPath) as! CommentCell
+        cell.comment = comments[indexPath.item]
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 50)
+    }
     
     @objc fileprivate func handleCommentSubmit(){
         print("Submitting comment")
@@ -80,6 +101,21 @@ class CommentController: UICollectionViewController {
             }
             
             print("Successfully saved the comment")
+        }
+    }
+    
+    fileprivate func fetchCommentsForPost() {
+        guard let postId = self.post?.postId else { return }
+        let postCommentsRef = Database.database().reference().child("comments").child(postId)
+        postCommentsRef.observe(.childAdded, with: { (snapshot) in
+
+            guard let commentJSON = snapshot.value as? [String : Any] else { return }
+            let comment = Comment(commentJSON: commentJSON)
+            self.comments.insert(comment, at: 0)
+            self.collectionView?.reloadData()
+            
+        }) { (error) in
+            print("Error occured while fetching comments for the post", error)
         }
     }
 }

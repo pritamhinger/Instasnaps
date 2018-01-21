@@ -14,6 +14,8 @@
 		4866E468201399E40031EA7C /* CustomTransitionAnimationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866E467201399E40031EA7C /* CustomTransitionAnimationPresenter.swift */; };
 		4866E46A20139B0E0031EA7C /* CustomTransitionAnimationDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866E46920139B0E0031EA7C /* CustomTransitionAnimationDismisser.swift */; };
 		4866E498201460BF0031EA7C /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866E497201460BF0031EA7C /* CommentController.swift */; };
+		4866E49A201498620031EA7C /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866E499201498620031EA7C /* CommentCell.swift */; };
+		4866E49C20149B110031EA7C /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4866E49B20149B110031EA7C /* Comment.swift */; };
 		48AF6CF02007C98400B833CB /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6CEF2007C98400B833CB /* CustomImageView.swift */; };
 		48AF6CF52007DD5700B833CB /* HomeFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6CF42007DD5700B833CB /* HomeFeedController.swift */; };
 		48AF6CF82007DFCF00B833CB /* HomeFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48AF6CF72007DFCF00B833CB /* HomeFeedCell.swift */; };
@@ -50,6 +52,8 @@
 		4866E467201399E40031EA7C /* CustomTransitionAnimationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransitionAnimationPresenter.swift; sourceTree = "<group>"; };
 		4866E46920139B0E0031EA7C /* CustomTransitionAnimationDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransitionAnimationDismisser.swift; sourceTree = "<group>"; };
 		4866E497201460BF0031EA7C /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
+		4866E499201498620031EA7C /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		4866E49B20149B110031EA7C /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		48AF6CEF2007C98400B833CB /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		48AF6CF42007DD5700B833CB /* HomeFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedController.swift; sourceTree = "<group>"; };
 		48AF6CF72007DFCF00B833CB /* HomeFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeedCell.swift; sourceTree = "<group>"; };
@@ -148,6 +152,7 @@
 			children = (
 				48AF6CF32007DD4600B833CB /* View */,
 				48AF6CF22007DD3D00B833CB /* Controller */,
+				4866E49B20149B110031EA7C /* Comment.swift */,
 			);
 			name = HomeFeed;
 			sourceTree = "<group>";
@@ -165,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				48AF6CF72007DFCF00B833CB /* HomeFeedCell.swift */,
+				4866E499201498620031EA7C /* CommentCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -529,6 +535,7 @@
 				4866E498201460BF0031EA7C /* CommentController.swift in Sources */,
 				4866E468201399E40031EA7C /* CustomTransitionAnimationPresenter.swift in Sources */,
 				482DF9342003E45F003D16D7 /* Post.swift in Sources */,
+				4866E49C20149B110031EA7C /* Comment.swift in Sources */,
 				48E6023A1FF90EF800E6C1A4 /* LoginController.swift in Sources */,
 				48AF6CF52007DD5700B833CB /* HomeFeedController.swift in Sources */,
 				48E602351FF8C50B00E6C1A4 /* User.swift in Sources */,
@@ -545,6 +552,7 @@
 				48AF6D03200B3C7700B833CB /* UserSearchCell.swift in Sources */,
 				4866E46A20139B0E0031EA7C /* CustomTransitionAnimationDismisser.swift in Sources */,
 				48E602401FFA79F300E6C1A4 /* PhotoSelectorController.swift in Sources */,
+				4866E49A201498620031EA7C /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
