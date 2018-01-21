@@ -96,7 +96,8 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
                 
                 guard let postJSON = value as? [String: Any] else { return }
                 
-                let post = Post(user: user, dictionary: postJSON)
+                var post = Post(user: user, dictionary: postJSON)
+                post.postId = key
                 self.posts.append(post)
             })
             
@@ -133,6 +134,7 @@ class HomeFeedController: UICollectionViewController, UICollectionViewDelegateFl
         print("Inside HomeFeedContrller")
         print("Clicked Post is : \(post.caption)")
         let commentController = CommentController(collectionViewLayout: UICollectionViewFlowLayout())
+        commentController.post = post
         navigationController?.pushViewController(commentController, animated: true)
     }
 }

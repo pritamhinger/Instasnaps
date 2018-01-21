@@ -7,10 +7,19 @@
 //
 
 import UIKit
+import Firebase
 
 class CommentController: UICollectionViewController {
     
-    let containerView: UIView = {
+    var post: Post?
+    
+    let commentTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Enter your comment here..!!"
+        return textField
+    }()
+    
+    lazy var containerView: UIView = {
         let commentView = UIView()
         commentView.backgroundColor = .white
         commentView.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
@@ -22,12 +31,11 @@ class CommentController: UICollectionViewController {
         submitButton.addTarget(self, action: #selector(handleCommentSubmit), for: .touchUpInside)
         commentView.addSubview(submitButton)
         
-        let commentTextField = UITextField()
-        commentTextField.placeholder = "Enter your comment here..!!"
-        commentView.addSubview(commentTextField)
+        
+        commentView.addSubview(self.commentTextField)
         
         submitButton.anchor(top: commentView.topAnchor, left: nil, bottom: commentView.bottomAnchor, right: commentView.rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 12, width: 50, height: 0)
-        commentTextField.anchor(top: commentView.topAnchor, left: commentView.leftAnchor, bottom: commentView.bottomAnchor, right: submitButton.leftAnchor, topPadding: 0, leftPadding: 12, bottomPadding: 0, rightPadding: 0, width: 0, height: 0)
+        self.commentTextField.anchor(top: commentView.topAnchor, left: commentView.leftAnchor, bottom: commentView.bottomAnchor, right: submitButton.leftAnchor, topPadding: 0, leftPadding: 12, bottomPadding: 0, rightPadding: 0, width: 0, height: 0)
         return commentView
     }()
     
@@ -59,5 +67,19 @@ class CommentController: UICollectionViewController {
     
     @objc fileprivate func handleCommentSubmit(){
         print("Submitting comment")
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let postId = post?.postId else { return }
+        guard let commentText = commentTextField.text else { return }
+        let values: [String : Any] = ["commentText" : commentText,
+                                      "commentedOn" : Date().timeIntervalSince1970,
+                                      "commentedByUserId" : uid]
+        Database.database().reference().child("comments").child(postId).childByAutoId().updateChildValues(values) { (error, reference) in
+            if let error = error{
+                print("error occured while saving comment", error)
+                return
+            }
+            
+            print("Successfully saved the comment")
+        }
     }
 }
