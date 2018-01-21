@@ -9,7 +9,14 @@
 import UIKit
 import Firebase
 
+protocol UserProfileLayoutDelegate {
+    func didChangeToListView();
+    func didChangeToGridView();
+}
+
 class UserProfileHeader: UICollectionViewCell {
+    
+    var delegate: UserProfileLayoutDelegate?
     
     var user: UserProfile?{
         didSet{
@@ -27,16 +34,18 @@ class UserProfileHeader: UICollectionViewCell {
         return imageView
     }()
     
-    let gridButton: UIButton = {
+    lazy var gridButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "grid"), for: .normal)
+        button.addTarget(self, action: #selector(showPostsAsGrid), for: .touchUpInside)
         return button
     }()
     
-    let listButton: UIButton = {
+    lazy var listButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "list"), for: .normal)
         button.tintColor = UIColor(white: 0, alpha: 0.2)
+        button.addTarget(self, action: #selector(showPostsAsList), for: .touchUpInside)
         return button
     }()
     
@@ -213,5 +222,17 @@ class UserProfileHeader: UICollectionViewCell {
         editProfileFollowUnfollowButton.setTitleColor(.black, for: .normal)
         editProfileFollowUnfollowButton.backgroundColor = UIColor.white
         editProfileFollowUnfollowButton.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    
+    @objc fileprivate func showPostsAsList(){
+        listButton.tintColor = .mainBlue()
+        gridButton.tintColor = UIColor(white: 0, alpha: 0.2)
+        delegate?.didChangeToListView()
+    }
+    
+    @objc fileprivate func showPostsAsGrid(){
+        gridButton.tintColor = .mainBlue()
+        listButton.tintColor = UIColor(white: 0, alpha: 0.2)
+        delegate?.didChangeToGridView()
     }
 }
