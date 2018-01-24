@@ -20,6 +20,7 @@ class UserProfileController: UICollectionViewController {
     var posts = [Post]()
     var userId: String?
     var isGridView = true
+    var didFinishedPaging = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +39,42 @@ class UserProfileController: UICollectionViewController {
             self.user = user
             self.navigationItem.title = self.user?.username
             self.collectionView?.reloadData()
-            self.fetchOrderedUserPosts()
+            self.fetchUserPostsOnPerPageBasis()
+        }
+    }
+    
+    fileprivate func fetchUserPostsOnPerPageBasis(){
+        guard let uid = self.user?.uid else { return }
+        
+        let userPostRef = Database.database().reference().child("posts").child(uid)
+        var query = userPostRef.queryOrderedByKey()
+        
+        if posts.count > 0 {
+            guard let startingValue = posts.last?.postId else { return }
+            query = query.queryStarting(atValue: startingValue)
+        }
+        
+        query.queryLimited(toFirst: 4).observeSingleEvent(of: .value, with: { (snapshot) in
+
+            guard var allObjects = snapshot.children.allObjects as? [DataSnapshot] else { return }
+            guard let user = self.user else { return }
+            
+            if allObjects.count < 4{
+                self.didFinishedPaging = true
+            }
+            
+            if self.posts.count > 0{
+                allObjects.removeFirst()
+            }
+            
+            allObjects.forEach({ (snapshot) in
+                guard let postDictionary = snapshot.value as? [String : Any] else { return }
+                let post = Post(user: user, dictionary: postDictionary)
+                self.posts.append(post)
+                self.collectionView?.reloadData()
+            })
+        }) { (error) in
+            print("Error occured while getting ")
         }
     }
     
@@ -64,6 +100,11 @@ class UserProfileController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if indexPath.item == self.posts.count - 1 && !didFinishedPaging {
+            fetchUserPostsOnPerPageBasis()
+        }
+        
         if isGridView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: gridViewCellIdentifier, for: indexPath) as! UserProfilePhotoCollectionViewCell
             cell.post = posts[indexPath.item]
