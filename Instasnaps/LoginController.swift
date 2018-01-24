@@ -81,6 +81,8 @@ class LoginController: UIViewController {
         view.addSubview(dontHaveAnAccountButton)
         view.addSubview(logoContainerView)
         
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardOnTap)))
+        
         dontHaveAnAccountButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 0, width: 0, height: 50)
         logoContainerView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 0, width: 0, height: 150)
         
@@ -107,6 +109,10 @@ class LoginController: UIViewController {
             loginButton.isEnabled = false
             loginButton.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
         }
+    }
+    
+    @objc fileprivate func dismissKeyboardOnTap(){
+        view.endEditing(true)
     }
     
     @objc fileprivate func handleLogin() {

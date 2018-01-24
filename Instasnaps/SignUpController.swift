@@ -84,6 +84,8 @@ class SignUpController: UIViewController {
         view.addSubview(emailTextField)
         view.addSubview(alreadyHaveAnAccountButton)
         
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyBoardOnTap)))
+        
         addPhotoButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, topPadding: 40, leftPadding: 0, bottomPadding: 0, rightPadding: 0, width: 140, height: 140)
         addPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         alreadyHaveAnAccountButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 0, width: 0, height: 50)
@@ -167,8 +169,13 @@ class SignUpController: UIViewController {
         imageViewController.allowsEditing = true
         present(imageViewController, animated: true, completion: nil)
     }
+    
     @objc func showLoginController(){
         _ = navigationController?.popViewController(animated: true)
+    }
+    
+    @objc fileprivate func dismissKeyBoardOnTap(){
+        view.endEditing(true)
     }
 }
 
