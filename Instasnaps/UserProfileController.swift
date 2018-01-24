@@ -54,12 +54,12 @@ class UserProfileController: UICollectionViewController {
             query = query.queryStarting(atValue: startingValue)
         }
         
-        query.queryLimited(toFirst: 4).observeSingleEvent(of: .value, with: { (snapshot) in
+        query.queryLimited(toFirst: 3).observeSingleEvent(of: .value, with: { (snapshot) in
 
             guard var allObjects = snapshot.children.allObjects as? [DataSnapshot] else { return }
             guard let user = self.user else { return }
             
-            if allObjects.count < 4{
+            if allObjects.count < 3{
                 self.didFinishedPaging = true
             }
             
@@ -69,10 +69,12 @@ class UserProfileController: UICollectionViewController {
             
             allObjects.forEach({ (snapshot) in
                 guard let postDictionary = snapshot.value as? [String : Any] else { return }
-                let post = Post(user: user, dictionary: postDictionary)
+                var post = Post(user: user, dictionary: postDictionary)
+                post.postId = snapshot.key
                 self.posts.append(post)
-                self.collectionView?.reloadData()
             })
+            
+            self.collectionView?.reloadData()
         }) { (error) in
             print("Error occured while getting ")
         }
