@@ -9,4 +9,5 @@ target 'Instasnaps' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'Firebase/Database'
+  pod 'Firebase/Messaging'
 end

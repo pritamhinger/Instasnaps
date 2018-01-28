@@ -8,9 +8,10 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -22,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.rootViewController = MainTabBarController()
         
+        attemptRegisterForNotification(application)
         return true
     }
 
@@ -47,6 +49,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("Inside didRegisterForRemoteNotificationsWithDeviceToken with deviceToken : \(deviceToken)")
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Inside didReceiveRegistrationToken with fcmToken : \(fcmToken)")
+    }
 
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
+    }
+    
+    func attemptRegisterForNotification(_ application: UIApplication) {
+        print("Inside attemptRegisterForNotification")
+        
+        Messaging.messaging().delegate = self
+        UNUserNotificationCenter.current().delegate = self
+        
+        let autorizationOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: autorizationOptions) { (granted, error) in
+            if let error = error{
+                print("Failed to get authorization", error)
+                return
+            }
+            
+            if(granted){
+                print("Authorization granted")
+            }
+            else{
+                print("Authorization denied")
+            }
+        }
+        
+        application.registerForRemoteNotifications()
+    }
 }
 
