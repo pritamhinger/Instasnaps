@@ -47,23 +47,26 @@ class UserProfileController: UICollectionViewController {
         guard let uid = self.user?.uid else { return }
         
         let userPostRef = Database.database().reference().child("posts").child(uid)
-        var query = userPostRef.queryOrderedByKey()
+        //var query = userPostRef.queryOrderedByKey()
+        var query = userPostRef.queryOrdered(byChild: "createdOn")
         
         if posts.count > 0 {
-            guard let startingValue = posts.last?.postId else { return }
-            query = query.queryStarting(atValue: startingValue)
+            guard let startingValue = posts.last?.creationDate.timeIntervalSince1970 else { return }
+            query = query.queryEnding(atValue: startingValue)
         }
         
-        query.queryLimited(toFirst: 3).observeSingleEvent(of: .value, with: { (snapshot) in
+        query.queryLimited(toLast: 3).observeSingleEvent(of: .value, with: { (snapshot) in
 
             guard var allObjects = snapshot.children.allObjects as? [DataSnapshot] else { return }
             guard let user = self.user else { return }
+            
+            allObjects.reverse()
             
             if allObjects.count < 3{
                 self.didFinishedPaging = true
             }
             
-            if self.posts.count > 0{
+            if self.posts.count > 0 && allObjects.count > 0{
                 allObjects.removeFirst()
             }
             
@@ -77,23 +80,6 @@ class UserProfileController: UICollectionViewController {
             self.collectionView?.reloadData()
         }) { (error) in
             print("Error occured while getting ")
-        }
-    }
-    
-    fileprivate func fetchOrderedUserPosts(){
-        guard let uid = self.user?.uid else { return }
-        
-        let userPostRef = Database.database().reference().child("posts").child(uid)
-        userPostRef.queryOrdered(byChild: "createdOn").observe(.childAdded, with: { (snapshot) in
-            guard let postDictionary = snapshot.value as? [String: Any] else { return }
-            
-            guard let user = self.user else { return }
-            let post = Post(user: user, dictionary: postDictionary)
-            self.posts.insert(post, at: 0)
-            
-            self.collectionView?.reloadData()
-        }) { (error) in
-            print("Error occured while loading the user's posts", error)
         }
     }
     

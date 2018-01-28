@@ -229,20 +229,20 @@
 		48BEAD9C1FF2C1FA00BF689F /* Instasnaps */ = {
 			isa = PBXGroup;
 			children = (
-				4835E52F20134AA100D10DA4 /* Camera */,
-				48AF6CFC200B37B500B833CB /* Search */,
-				48AF6CF12007DD3300B833CB /* HomeFeed */,
-				48E6023B1FFA79C000E6C1A4 /* PhotoSelector */,
-				48E602361FF90ED400E6C1A4 /* Login */,
-				48E6022C1FF8B6B600E6C1A4 /* UserProfile */,
-				48E602281FF8B5FC00E6C1A4 /* MainTabBar */,
-				48BEADAF1FF41C3A00BF689F /* Helpers */,
 				48BEAD9D1FF2C1FA00BF689F /* AppDelegate.swift */,
-				48BEADA11FF2C1FA00BF689F /* Main.storyboard */,
 				48BEADA41FF2C1FA00BF689F /* Assets.xcassets */,
+				4835E52F20134AA100D10DA4 /* Camera */,
 				48BEADB51FF56A6500BF689F /* GoogleService-Info.plist */,
-				48BEADA61FF2C1FA00BF689F /* LaunchScreen.storyboard */,
+				48BEADAF1FF41C3A00BF689F /* Helpers */,
+				48AF6CF12007DD3300B833CB /* HomeFeed */,
 				48BEADA91FF2C1FA00BF689F /* Info.plist */,
+				48BEADA61FF2C1FA00BF689F /* LaunchScreen.storyboard */,
+				48E602361FF90ED400E6C1A4 /* Login */,
+				48BEADA11FF2C1FA00BF689F /* Main.storyboard */,
+				48E602281FF8B5FC00E6C1A4 /* MainTabBar */,
+				48E6023B1FFA79C000E6C1A4 /* PhotoSelector */,
+				48AF6CFC200B37B500B833CB /* Search */,
+				48E6022C1FF8B6B600E6C1A4 /* UserProfile */,
 			);
 			path = Instasnaps;
 			sourceTree = "<group>";
