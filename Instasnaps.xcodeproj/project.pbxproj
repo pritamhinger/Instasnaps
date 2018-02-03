@@ -41,6 +41,7 @@
 		48E602441FFAB1B400E6C1A4 /* PhotoHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E602431FFAB1B400E6C1A4 /* PhotoHeaderCell.swift */; };
 		48E60266200137F700E6C1A4 /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E60265200137F700E6C1A4 /* SharePhotoController.swift */; };
 		48EE58FE20261E5B009211E4 /* CommentInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EE58FD20261E5B009211E4 /* CommentInputAccessoryView.swift */; };
+		48EE590020262D7F009211E4 /* CommentInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EE58FF20262D7F009211E4 /* CommentInputView.swift */; };
 		E67BC55B550811F8C78DA5F0 /* Pods_Instasnaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C5499D5368156772A13A532 /* Pods_Instasnaps.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 		48E602431FFAB1B400E6C1A4 /* PhotoHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoHeaderCell.swift; sourceTree = "<group>"; };
 		48E60265200137F700E6C1A4 /* SharePhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
 		48EE58FD20261E5B009211E4 /* CommentInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputAccessoryView.swift; sourceTree = "<group>"; };
+		48EE58FF20262D7F009211E4 /* CommentInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputView.swift; sourceTree = "<group>"; };
 		6C5499D5368156772A13A532 /* Pods_Instasnaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instasnaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5C2D0FEBFE2B8BB3735FC5A /* Pods-Instasnaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instasnaps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instasnaps/Pods-Instasnaps.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,6 +177,7 @@
 				48AF6CF72007DFCF00B833CB /* HomeFeedCell.swift */,
 				4866E499201498620031EA7C /* CommentCell.swift */,
 				48EE58FD20261E5B009211E4 /* CommentInputAccessoryView.swift */,
+				48EE58FF20262D7F009211E4 /* CommentInputView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48EE590020262D7F009211E4 /* CommentInputView.swift in Sources */,
 				48BEADB21FF41C6500BF689F /* UIColor+Extension.swift in Sources */,
 				4835E53220134AB800D10DA4 /* CameraController.swift in Sources */,
 				48AF6D05200E7DBA00B833CB /* Date+Extension.swift in Sources */,

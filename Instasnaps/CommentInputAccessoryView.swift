@@ -16,10 +16,11 @@ class CommentInputAccessoryView: UIView {
     
     var delegate: CommentInputAccessoryViewDelegate?
     
-    let commentTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Enter your comment here..!!"
-        return textField
+    let commentTextField: CommentInputView = {
+        let tv = CommentInputView()
+        tv.isScrollEnabled = false
+        tv.font = UIFont.systemFont(ofSize: 18)
+        return tv
     }()
     
     let submitButton: UIButton = {
@@ -34,12 +35,20 @@ class CommentInputAccessoryView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        autoresizingMask = .flexibleHeight
+        
+        backgroundColor = .white
+        
         addSubview(submitButton)
         addSubview(commentTextField)
         
-        submitButton.anchor(top: topAnchor, left: nil, bottom: bottomAnchor, right: rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 12, width: 50, height: 0)
-        commentTextField.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: submitButton.leftAnchor, topPadding: 0, leftPadding: 12, bottomPadding: 0, rightPadding: 0, width: 0, height: 0)
+        submitButton.anchor(top: topAnchor, left: nil, bottom: nil, right: rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 12, width: 50, height: 50)
+        commentTextField.anchor(top: topAnchor, left: leftAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: submitButton.leftAnchor, topPadding: 8, leftPadding: 12, bottomPadding: 8, rightPadding: 0, width: 0, height: 0)
         setUpLineSeparatorView()
+    }
+    
+    override var intrinsicContentSize: CGSize{
+        return .zero
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -62,5 +71,6 @@ class CommentInputAccessoryView: UIView {
     
     func clearCommentTextField(){
         commentTextField.text = nil
+        commentTextField.showPlaceHolderLabel()
     }
 }
