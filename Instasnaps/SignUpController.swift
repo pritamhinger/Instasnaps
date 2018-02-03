@@ -130,7 +130,8 @@ class SignUpController: UIViewController {
                 
                 guard let uid = user?.uid else {return}
                 
-                let userProfileAttributes = ["username": username, "profileImageURL": imageUrl]
+                guard let fcmToken = Messaging.messaging().fcmToken else { return }
+                let userProfileAttributes = ["username": username, "profileImageURL": imageUrl, "fcmToken": fcmToken]
                 let userValues = [uid: userProfileAttributes]
                 
                 Database.database().reference().child("users").updateChildValues(userValues, withCompletionBlock: {(error, reference) in
