@@ -40,6 +40,7 @@
 		48E602421FFA93D300E6C1A4 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E602411FFA93D300E6C1A4 /* PhotoCell.swift */; };
 		48E602441FFAB1B400E6C1A4 /* PhotoHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E602431FFAB1B400E6C1A4 /* PhotoHeaderCell.swift */; };
 		48E60266200137F700E6C1A4 /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E60265200137F700E6C1A4 /* SharePhotoController.swift */; };
+		48EE58FE20261E5B009211E4 /* CommentInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EE58FD20261E5B009211E4 /* CommentInputAccessoryView.swift */; };
 		E67BC55B550811F8C78DA5F0 /* Pods_Instasnaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C5499D5368156772A13A532 /* Pods_Instasnaps.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		48E602411FFA93D300E6C1A4 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		48E602431FFAB1B400E6C1A4 /* PhotoHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoHeaderCell.swift; sourceTree = "<group>"; };
 		48E60265200137F700E6C1A4 /* SharePhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
+		48EE58FD20261E5B009211E4 /* CommentInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputAccessoryView.swift; sourceTree = "<group>"; };
 		6C5499D5368156772A13A532 /* Pods_Instasnaps.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instasnaps.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5C2D0FEBFE2B8BB3735FC5A /* Pods-Instasnaps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instasnaps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instasnaps/Pods-Instasnaps.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,6 +174,7 @@
 			children = (
 				48AF6CF72007DFCF00B833CB /* HomeFeedCell.swift */,
 				4866E499201498620031EA7C /* CommentCell.swift */,
+				48EE58FD20261E5B009211E4 /* CommentInputAccessoryView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				48AF6CF52007DD5700B833CB /* HomeFeedController.swift in Sources */,
 				48E602351FF8C50B00E6C1A4 /* User.swift in Sources */,
 				48AF6D01200B37DE00B833CB /* UserSearchController.swift in Sources */,
+				48EE58FE20261E5B009211E4 /* CommentInputAccessoryView.swift in Sources */,
 				48AF6CF82007DFCF00B833CB /* HomeFeedCell.swift in Sources */,
 				48AF6CF02007C98400B833CB /* CustomImageView.swift in Sources */,
 				48E6022B1FF8B63100E6C1A4 /* MainTabBarController.swift in Sources */,

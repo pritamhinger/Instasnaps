@@ -9,40 +9,17 @@
 import UIKit
 import Firebase
 
-class CommentController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class CommentController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CommentInputAccessoryViewDelegate {
     
     var post: Post?
     var comments = [Comment]()
     let commentCellId = "CommentCellIdentifier"
     
-    let commentTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Enter your comment here..!!"
-        return textField
-    }()
-    
-    lazy var containerView: UIView = {
-        let commentView = UIView()
-        commentView.backgroundColor = .white
-        commentView.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
-        
-        let submitButton = UIButton(type: .system)
-        submitButton.setTitle("Submit", for: .normal)
-        submitButton.setTitleColor(.black, for: .normal)
-        submitButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        submitButton.addTarget(self, action: #selector(handleCommentSubmit), for: .touchUpInside)
-        commentView.addSubview(submitButton)
-        
-        let lineSeparatorView = UIView()
-        lineSeparatorView.backgroundColor = UIColor.rgb(red: 230, green: 230, blue: 230)
-        
-        commentView.addSubview(self.commentTextField)
-        commentView.addSubview(lineSeparatorView)
-        self.commentTextField.layer.cornerRadius = 5
-        submitButton.anchor(top: commentView.topAnchor, left: nil, bottom: commentView.bottomAnchor, right: commentView.rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 12, width: 50, height: 0)
-        self.commentTextField.anchor(top: commentView.topAnchor, left: commentView.leftAnchor, bottom: commentView.bottomAnchor, right: submitButton.leftAnchor, topPadding: 0, leftPadding: 12, bottomPadding: 0, rightPadding: 0, width: 0, height: 0)
-        lineSeparatorView.anchor(top: commentView.topAnchor, left: commentView.leftAnchor, bottom: nil, right: commentView.rightAnchor, topPadding: 0, leftPadding: 0, bottomPadding: 0, rightPadding: 0, width: 0, height: 1)
-        return commentView
+    lazy var containerView: CommentInputAccessoryView = {
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+        let commentInputAccessoryView = CommentInputAccessoryView(frame: frame)
+        commentInputAccessoryView.delegate = self
+        return commentInputAccessoryView
     }()
     
     override func viewDidLoad() {
@@ -105,11 +82,10 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
         return CGSize(width: view.frame.width, height: height)
     }
     
-    @objc fileprivate func handleCommentSubmit(){
+    func didSubmitComment(withText text: String) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let postId = post?.postId else { return }
-        guard let commentText = commentTextField.text else { return }
-        let values: [String : Any] = ["commentText" : commentText,
+        let values: [String : Any] = ["commentText" : text,
                                       "commentedOn" : Date().timeIntervalSince1970,
                                       "commentedByUserId" : uid]
         Database.database().reference().child("comments").child(postId).childByAutoId().updateChildValues(values) { (error, reference) in
@@ -118,7 +94,7 @@ class CommentController: UICollectionViewController, UICollectionViewDelegateFlo
                 return
             }
             
-            self.commentTextField.text = nil
+            self.containerView.clearCommentTextField()
         }
     }
     
